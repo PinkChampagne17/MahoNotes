@@ -1,0 +1,227 @@
+[
+    {
+        "charaName": "纯",
+        "name": "护甲破坏",
+        "time": 12,
+        "useTime": {
+            "minute": "1",
+            "second": "24"
+        }
+    },
+    {
+        "charaName": "纯",
+        "name": "护甲破坏",
+        "time": 12,
+        "useTime": {
+            "minute": "1",
+            "second": "8"
+        }
+    },
+    {
+        "charaName": "纯",
+        "name": "护甲破坏",
+        "time": 12,
+        "useTime": {
+            "minute": "0",
+            "second": "50"
+        }
+    },
+    {
+        "charaName": "纯",
+        "name": "护甲破坏",
+        "time": 12,
+        "useTime": {
+            "minute": "0",
+            "second": "32"
+        }
+    },
+    {
+        "charaName": "纯",
+        "name": "护甲破坏",
+        "time": 12,
+        "useTime": {
+            "minute": "0",
+            "second": "13"
+        }
+    },
+    {
+        "charaName": "真琴",
+        "name": "勇气呐喊",
+        "time": 12,
+        "useTime": {
+            "minute": "1",
+            "second": "24"
+        }
+    },
+    {
+        "charaName": "真琴",
+        "name": "勇气呐喊",
+        "time": 12,
+        "useTime": {
+            "minute": "1",
+            "second": "7"
+        }
+    },
+    {
+        "charaName": "真琴",
+        "name": "勇气呐喊",
+        "time": 12,
+        "useTime": {
+            "minute": "0",
+            "second": "47"
+        }
+    },
+    {
+        "charaName": "真琴",
+        "name": "勇气呐喊",
+        "time": 12,
+        "useTime": {
+            "minute": "0",
+            "second": "27"
+        }
+    },
+    {
+        "charaName": "真琴",
+        "name": "勇气呐喊",
+        "time": 12,
+        "useTime": {
+            "minute": "0",
+            "second": "7"
+        }
+    },
+    {
+        "charaName": "深月",
+        "name": "蔷薇领域",
+        "time": 8,
+        "useTime": {
+            "minute": "1",
+            "second": "24"
+        }
+    },
+    {
+        "charaName": "深月",
+        "name": "蔷薇领域",
+        "time": 8,
+        "useTime": {
+            "minute": "1",
+            "second": "7"
+        }
+    },
+    {
+        "charaName": "深月",
+        "name": "蔷薇领域",
+        "time": 8,
+        "useTime": {
+            "minute": "0",
+            "second": "47"
+        }
+    },
+    {
+        "charaName": "深月",
+        "name": "蔷薇领域",
+        "time": 8,
+        "useTime": {
+            "minute": "0",
+            "second": "28"
+        }
+    },
+    {
+        "charaName": "深月",
+        "name": "蔷薇领域",
+        "time": 8,
+        "useTime": {
+            "minute": "0",
+            "second": "8"
+        }
+    },
+    {
+        "charaName": "莉玛",
+        "name": "毛绒绒头槌",
+        "time": 1.5,
+        "useTime": {
+            "minute": "1",
+            "second": "16"
+        }
+    },
+    {
+        "charaName": "莉玛",
+        "name": "毛绒绒头槌",
+        "time": 1.5,
+        "useTime": {
+            "minute": "1",
+            "second": "8"
+        }
+    },
+    {
+        "charaName": "莉玛",
+        "name": "毛绒绒头槌",
+        "time": 1.5,
+        "useTime": {
+            "minute": "1",
+            "second": "0"
+        }
+    },
+    {
+        "charaName": "莉玛",
+        "name": "毛绒绒头槌",
+        "time": 1.5,
+        "useTime": {
+            "minute": "0",
+            "second": "52"
+        }
+    },
+    {
+        "charaName": "莉玛",
+        "name": "毛绒绒头槌",
+        "time": 1.5,
+        "useTime": {
+            "minute": "0",
+            "second": "44"
+        }
+    },
+    {
+        "charaName": "莉玛",
+        "name": "毛绒绒头槌",
+        "time": 1.5,
+        "useTime": {
+            "minute": "0",
+            "second": "36"
+        }
+    },
+    {
+        "charaName": "莉玛",
+        "name": "毛绒绒头槌",
+        "time": 1.5,
+        "useTime": {
+            "minute": "0",
+            "second": "28"
+        }
+    },
+    {
+        "charaName": "莉玛",
+        "name": "毛绒绒头槌",
+        "time": 1.5,
+        "useTime": {
+            "minute": "0",
+            "second": "20"
+        }
+    },
+    {
+        "charaName": "莉玛",
+        "name": "毛绒绒头槌",
+        "time": 1.5,
+        "useTime": {
+            "minute": "0",
+            "second": "12"
+        }
+    },
+    {
+        "charaName": "莉玛",
+        "name": "毛绒绒头槌",
+        "time": 1.5,
+        "useTime": {
+            "minute": "0",
+            "second": "4"
+        }
+    }
+]

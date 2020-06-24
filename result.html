@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+
+<head>
+    <meta charset="utf-8">
+</head>
+
+<body style="height: 100%; margin: 0">
+    <div id="container" style="height: 100%; width: 150%;"></div>
+</body>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+<script type="text/javascript">
+
+    var dom = document.getElementById("container");
+    var myChart = echarts.init(dom);
+
+    var option = {
+        title: {
+            text: '深圳月最低生活费组成（单位:元）',
+            subtext: 'From ExcelHome',
+            sublink: 'http://e.weibo.com/1341556070/AjQH99che'
+        },
+        // tooltip: {
+        //     trigger: 'axis',
+        //     axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+        //         type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+        //     },
+        //     formatter: function (params) {
+        //         var tar = params[1];
+        //         return tar.name + '<br/>' + tar.seriesName + ' : ' + tar.value;
+        //     }
+        // },
+        grid: {
+            left: '1%',
+            right: '1%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis: {
+            max: 90,
+            inverse: true,
+            type: 'value',
+            maxInterval: 1,
+            axisLabel: {
+                formatter: (value) => {
+                    let m = value >= 60 ? 1 : 0
+                    let s = value % 60
+
+                    if (s == 0) { s = '00' }
+                    else if (s < 10) { s = '0' + s }
+
+                    return `${m}:${s}`
+                }
+            }
+        },
+        yAxis: {
+            type: 'category',
+            splitLine: { show: true },
+            data: ['狼', '黑骑']
+        },
+        series: [
+            // {
+            //     name: '空白',
+            //     type: 'bar',
+            //     stack: '小技能',
+            //     itemStyle: {
+            //         barBorderColor: 'rgba(0,0,0,0)',
+            //         color: 'rgba(0,0,0,0)'
+            //     },
+            //     emphasis: {
+            //         itemStyle: {
+            //             barBorderColor: 'rgba(0,0,0,0)',
+            //             color: 'rgba(0,0,0,0)'
+            //         }
+            //     },
+            //     data: [0, 1]
+            // },
+            // {
+            //     name: '持续时间',
+            //     type: 'bar',
+            //     stack: '小技能',
+            //     label: {
+            //         show: true,
+            //         position: 'inside'
+            //     },
+            //     data: [7, 12]
+            // },
+        ]
+    }
+
+    var data = [
+        [84, 67, 47, 27, 7],
+        [84, 68, 50, 32, 13]
+    ]
+
+    var result = []
+    var t = 12
+
+    data.forEach(i => {
+        let r = []
+        i.reverse().forEach(item => {
+            if (item - t < 0) {
+                r.push(0)
+                r.push(item)
+            }
+            else {
+                if (r.length == 0) {
+                    r.push(item - t)
+                    r.push(t)
+                }
+                else {
+                    let sum = r.reduce((total, num) => total + num)
+                    r.push(item - t - sum)
+                    r.push(t)
+                }
+            }
+        })
+        result.push(r)
+    })
+
+    for (let i = 0; i < result[0].length; i++) {
+        let obj = {
+            name: '持续时间',
+            type: 'bar',
+            stack: '小技能',
+            itemStyle: (i % 2 == 0) ? {
+                barBorderColor: 'rgba(0,0,0,0)',
+                color: 'rgba(0,0,0,0)'
+            } : undefined,
+            emphasis: (i % 2 == 0) ? {
+                itemStyle: {
+                    barBorderColor: 'rgba(0,0,0,0)',
+                    color: 'rgba(0,0,0,0)'
+                }
+            } : undefined,
+            label: {
+                show: i % 2 != 0,
+                position: 'inside'
+            },
+            data: [result[0][i], result[1][i]]
+        }
+
+        option.series.push(obj)
+    }
+
+    if (option && typeof option === "object") {
+        myChart.setOption(option, true);
+    }
+</script>
+
+
+</html>
