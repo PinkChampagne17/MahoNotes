@@ -223,5 +223,23 @@
             "minute": "0",
             "second": "4"
         }
+    },
+    {
+        "charaName": "真琴",
+        "name": "天狼噬斩",
+        "time": 18,
+        "useTime": {
+            "minute": "1",
+            "second": "0"
+        }
+    },
+    {
+        "charaName": "真琴",
+        "name": "天狼噬斩",
+        "time": 18,
+        "useTime": {
+            "minute": "0",
+            "second": "30"
+        }
     }
 ]

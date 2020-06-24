@@ -36,6 +36,7 @@
         </div>
         <br>
         <input type="button" value="生成时间轴" @click="save()">
+        <input type="button" value="重置" @click="selectedCharas = []; timeline = [];">
     </div>
     
 </body>
@@ -44,7 +45,8 @@
 <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.19.2/axios.min.js"></script>
 <script>
 
-    const TIMELINE_LOCALSTORAGE_KEY = 'pc17_clanBattleTimeline'
+    const TIMELINE_AUTOSAVE_LOCALSTORAGE_KEY = 'pc17-clan-battle-timeline-autosave'
+    const TIMELINE_RESULT_LOCALSTORAGE_KEY = 'pc17-clan-battle-timeline-Result'
 
     Vue.component('skill-time-chara', {
         props: ['chara'],
@@ -100,6 +102,12 @@
             timeline: []
         },
         watch: {
+            timeline: function() {
+                localStorage.setItem(TIMELINE_AUTOSAVE_LOCALSTORAGE_KEY, JSON.stringify({
+                    selectedCharas: this.selectedCharas,
+                    timeline: this.timeline
+                }))
+            }
         },
         methods: {
             getCharaIconSrc: function(chara) {
@@ -117,8 +125,34 @@
                 }
             },
             save: function() {
-                localStorage.setItem(TIMELINE_LOCALSTORAGE_KEY ,JSON.stringify(this.timeline))
+                let data = this.timeline
+
+                let skillNames = []
+                let result = []
+
+                data.forEach(item => {
+                    if (!skillNames.some(n => n == item.name)) {
+                        skillNames.push(item.name)
+                    }
+                })
+
+                skillNames.forEach(n => {
+                    let t = data.filter(item => item.name == n)
+                    let timeline = t.map(({ useTime }) => ({ useTime }))
+                    result.push({
+                        charaName: t[0].charaName,
+                        skillName: t[0].name,
+                        timeline
+                    })
+                })
+
+                localStorage.setItem(TIMELINE_RESULT_LOCALSTORAGE_KEY ,JSON.stringify(result))
             }
+        },
+        mounted: function() {
+            let autosave = JSON.parse(localStorage.getItem(TIMELINE_AUTOSAVE_LOCALSTORAGE_KEY))
+            this.selectedCharas = autosave.selectedCharas
+            this.timeline = autosave.timeline
         },
         filters: {
             useTimeToString: function(value) {
