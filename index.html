@@ -22,11 +22,11 @@
             >
         </div>
         添加技能施放时间：
-        <skill-time-chara
+        <added-chara
             v-for="(chara, index) in selectedCharas"
             :chara="chara"
             :key="index"
-            ></skill-time-chara>
+            ></added-chara>
             
         <br>
         已添加的技能施放时间：
@@ -37,134 +37,24 @@
         <br>
         <input type="button" value="生成时间轴" @click="save()">
         <input type="button" value="重置" @click="selectedCharas = []; timeline = [];">
+
+        <br>
+
+        <div>
+            <div style="display: inline;">
+                技能 / 时间
+            </div>
+            <div style="display: inline;">
+                <div style="display: inline; background-color: aqua; border: black solid 1px ;" v-for="i in th">{{ i }}</div>
+            </div>
+        </div>
+
     </div>
-    
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.19.2/axios.min.js"></script>
-<script>
 
-    const TIMELINE_AUTOSAVE_LOCALSTORAGE_KEY = 'pc17-clan-battle-timeline-autosave'
-    const TIMELINE_RESULT_LOCALSTORAGE_KEY = 'pc17-clan-battle-timeline-Result'
-
-    Vue.component('skill-time-chara', {
-        props: ['chara'],
-        template:`
-        <div>
-            <template v-if="chara.skills">
-                <b>{{ chara.name }}</b>
-                <skill-time-skill
-                    v-for="(skill, index) in chara.skills"
-                    :key="index"
-                    :skill="skill"
-                    :charaName="chara.name"
-                ></skill-time-skill>
-            </template>
-        </div>
-        `
-    })
-    
-    Vue.component('skill-time-skill', {
-        props: ['skill', 'charaName'],
-        data: function () {
-            return {
-                minute: 0,
-                second: 0
-            }
-        },
-        methods: {
-            add: function() {
-                app.timeline.push({
-                    charaName: this.charaName,
-                    ...this.skill,
-                    useTime: {
-                        minute: this.minute,
-                        second: this.second
-                    }
-                })
-            }
-        },
-        template: `
-            <div>
-                <span>{{ skill.name }}</span>
-                <input v-model="minute">:<input v-model="second">
-                <input type="button" value="+" @click="add()">
-            </div>
-        `
-    })
-    
-    var app = new Vue({
-        el: '#app',
-        data: {
-            charas: [],
-            selectedCharas: [],
-            timeline: []
-        },
-        watch: {
-            timeline: function() {
-                localStorage.setItem(TIMELINE_AUTOSAVE_LOCALSTORAGE_KEY, JSON.stringify({
-                    selectedCharas: this.selectedCharas,
-                    timeline: this.timeline
-                }))
-            }
-        },
-        methods: {
-            getCharaIconSrc: function(chara) {
-                return './static/charaicons/' + chara.name + '.webp'
-            },
-            selectChara: function(chara) {
-                if (this.selectedCharas.length == 5) {
-                    alert("一个队伍最多5个角色")
-                }
-                else if (this.selectedCharas.some(item => item.name == chara.name)) {
-                    alert("该角色已添加")
-                }
-                else {
-                    this.selectedCharas.push(chara)
-                }
-            },
-            save: function() {
-                let data = this.timeline
-
-                let skillNames = []
-                let result = []
-
-                data.forEach(item => {
-                    if (!skillNames.some(n => n == item.name)) {
-                        skillNames.push(item.name)
-                    }
-                })
-
-                skillNames.forEach(n => {
-                    let t = data.filter(item => item.name == n)
-                    let timeline = t.map(({ useTime }) => ({ useTime }))
-                    result.push({
-                        charaName: t[0].charaName,
-                        skillName: t[0].name,
-                        timeline
-                    })
-                })
-
-                localStorage.setItem(TIMELINE_RESULT_LOCALSTORAGE_KEY ,JSON.stringify(result))
-            }
-        },
-        mounted: function() {
-            let autosave = JSON.parse(localStorage.getItem(TIMELINE_AUTOSAVE_LOCALSTORAGE_KEY))
-            this.selectedCharas = autosave.selectedCharas
-            this.timeline = autosave.timeline
-        },
-        filters: {
-            useTimeToString: function(value) {
-                let minute = value.minute < 10 ? '0' + value.minute : value.minute
-                let second = value.second < 10 ? '0' + value.second : value.second
-                return minute + ':' + second
-            }
-        }
-    })
-
-    axios.get('./static/data/charas.json').then(res => {
-        app.charas = res.data
-    })
-
-</script>
+<script src="components/added-chara-component.js"></script>
+<script src="components/added-skill-time-component.js"></script>
+<script src="controllers/index-controller.js"></script>
