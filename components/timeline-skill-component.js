@@ -4,12 +4,12 @@ Vue.component('timeline-skill', {
         timeArray: []
     }),
     mounted: function() {
-        console.log(this.item)
-
         let a = []
+
         for (let i = 90; i > 0; i--) {
             a[i] = false
         }
+        
         this.item.timeline.forEach(t => {
             for (let i = t; i > t - this.item.time; i--) {
                 if (i > 0) {
@@ -19,8 +19,6 @@ Vue.component('timeline-skill', {
         })
 
         a.shift()
-
-        console.log(this.item.skillName,a)
         
         this.timeArray = a.reverse()
     },

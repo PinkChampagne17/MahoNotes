@@ -1,7 +1,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>clanbattle</title>
+    <title>clanbattle</title> 
+    <style>
+        .chara-icon {
+            margin-right: 10px;
+            margin-bottom: 10px;
+            width: 100px;
+        }
+        .input-number {
+            width: 50px;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
@@ -11,6 +21,7 @@
                 :key="index"
                 :src="getCharaIconSrc(chara)"
                 @click="selectChara(chara)"
+                class="chara-icon"
                 >
         </div>
         已选角色：
@@ -19,6 +30,7 @@
                 :key="index"
                 :src="getCharaIconSrc(chara)"
                 @click="selectedCharas.splice(index, 1)"
+                class="chara-icon"
             >
         </div>
         添加技能施放时间：
@@ -60,7 +72,3 @@
 <script src="components/timeline-skill-component.js"></script>
 
 <script src="controllers/index-controller.js"></script>
-
-<script>
-    
-</script>
