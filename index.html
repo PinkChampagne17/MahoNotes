@@ -40,15 +40,15 @@
 
         <br>
 
-        <div>
-            <div style="display: inline;">
-                技能 / 时间
-            </div>
-            <div style="display: inline;">
-                <div style="display: inline; background-color: aqua; border: black solid 1px ;" v-for="i in th">{{ i }}</div>
-            </div>
-        </div>
-
+        <table border="1px">
+            <tr>
+                <th>技能/时间</th>
+                <th v-for="item in th">{{ item }}</th>
+            </tr>
+            <template v-for="item in result">
+                <timeline-skill :item="item"></timeline-skill>
+            </template>
+        </table>
     </div>
 </body>
 
@@ -57,4 +57,10 @@
 
 <script src="components/added-chara-component.js"></script>
 <script src="components/added-skill-time-component.js"></script>
+<script src="components/timeline-skill-component.js"></script>
+
 <script src="controllers/index-controller.js"></script>
+
+<script>
+    
+</script>
