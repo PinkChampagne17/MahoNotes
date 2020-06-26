@@ -1,20 +1,30 @@
 Vue.component('added-skill-time', {
     props: ['skill', 'charaName'],
-    data: function () {
-        return {
-            minute: 0,
-            second: 0
-        }
-    },
+    data: () => ({
+        minute: 0,
+        second: 0
+    }),
     watch: {
         minute: function(val, oldVal) {
-            if (this.isUnavailableTime()) {
+            if (val < 0) {
+                this.minute = 0
+            }
+            if (val > 1) {
+                this.minute = 1
+            }
+            if (this.minute == 1 && this.second > 30) {
                 this.second = 30
             }
         },
         second: function(val, oldVal) {
-            if (this.isUnavailableTime()) {
-                this.minute = 0
+            if (val < 0) {
+                this.second = 0
+            }
+            if (val >= 60) {
+                this.second = 59
+            }
+            if (this.minute == 1 && this.second > 31) {
+                this.second = 30
             }
         }
     },
@@ -29,9 +39,6 @@ Vue.component('added-skill-time', {
                 }
             })
         },
-        isUnavailableTime: function() {
-            return this.minute >= 1 && this.second > 30
-        }
     },
     template: `
         <div>
@@ -48,7 +55,7 @@ Vue.component('added-skill-time', {
                 class="input-number"
                 type="number"
                 min="0"
-                max="60"
+                max="59"
                 v-model="second"
                 >
             <input

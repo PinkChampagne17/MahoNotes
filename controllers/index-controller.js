@@ -4,28 +4,25 @@ const TIMELINE_AUTOSAVE_LOCALSTORAGE_KEY = 'pc17-clan-battle-timeline-autosave'
 var app = new Vue({
     el: '#app',
     data: {
-        charas: [],
+        charas: CHARAS,
         selectedCharas: [],
         timeline: [],
-        th: [],
-        result: []
+        result: [],
+        thIsTime: true,
+        canShowTimeline: false
     },
     mounted: function() {
-        let autosave = JSON.parse(localStorage.getItem(TIMELINE_AUTOSAVE_LOCALSTORAGE_KEY))
-        this.selectedCharas = autosave.selectedCharas
-        this.timeline = autosave.timeline
-
-        
-        for (let i = 90; i > 0; i--) {
-            this.th.push(i < 10 ? '0' + i : i)
-        }
+        // let autosave = JSON.parse(localStorage.getItem(TIMELINE_AUTOSAVE_LOCALSTORAGE_KEY))
+        // this.selectedCharas = autosave.selectedCharas
+        // this.timeline = autosave.timeline
     },
     watch: {
         timeline: function() {
-            localStorage.setItem(TIMELINE_AUTOSAVE_LOCALSTORAGE_KEY, JSON.stringify({
-                selectedCharas: this.selectedCharas,
-                timeline: this.timeline
-            }))
+            // localStorage.setItem(TIMELINE_AUTOSAVE_LOCALSTORAGE_KEY, JSON.stringify({
+            //     selectedCharas: this.selectedCharas,
+            //     timeline: this.timeline
+            // }))
+            this.save()
         }
     },
     methods: {
@@ -41,9 +38,26 @@ var app = new Vue({
             }
             else {
                 this.selectedCharas.push(chara)
+                this.selectedCharas.sort((a, b) => b.location - a.location)
             }
         },
+        getTh: function() {
+            let th = []
+            for (let i = 90; i > 0; i--) {
+                if (this.thIsTime) {
+                    let minute = parseInt(i / 60)
+                    let second = i % 60
+                    th.push(`${minute}:${second < 10 ? '0' + second : second}`)
+                }
+                else {
+                    th.push(i < 10 ? '0' + i : i)
+                }
+            }
+            return th
+        },
         save: function() {
+            alert('save')
+
             let data = this.timeline
 
             let skillNames = []
@@ -67,18 +81,13 @@ var app = new Vue({
             })
 
             this.result = result
-            // localStorage.setItem(TIMELINE_RESULT_LOCALSTORAGE_KEY ,JSON.stringify(result))
         }
     },
     filters: {
         useTimeToString: function(value) {
-            let minute = value.minute < 10 ? '0' + value.minute : value.minute
+            let minute = value.minute
             let second = value.second < 10 ? '0' + value.second : value.second
-            return minute + ':' + second
+            return `${minute}:${second}` 
         }
     }
-})
-
-axios.get('./static/data/charas.json').then(res => {
-    app.charas = res.data
 })

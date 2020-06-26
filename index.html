@@ -2,19 +2,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>clanbattle</title> 
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"> -->
     <style>
         .chara-icon {
             margin-right: 10px;
             margin-bottom: 10px;
-            width: 100px;
+            width: 80px;
         }
         .input-number {
             width: 50px;
         }
+        table {
+            text-align: center;
+        }
     </style>
 </head>
 <body>
-    <div id="app">
+    <div id="app" style="display: none;" v-show="true">
         选择角色：
         <div>
             <img v-for="(chara, index) in charas"
@@ -22,6 +26,7 @@
                 :src="getCharaIconSrc(chara)"
                 @click="selectChara(chara)"
                 class="chara-icon"
+                :title="chara.name"
                 >
         </div>
         已选角色：
@@ -47,28 +52,40 @@
             <input type="button" value="-" @click="timeline.splice(index, 1)">
         </div>
         <br>
-        <input type="button" value="生成时间轴" @click="save()">
-        <input type="button" value="重置" @click="selectedCharas = []; timeline = [];">
-
+        <input
+            type="button"
+            value="更改时间显示类型"
+            @click="thIsTime = !thIsTime"
+            >
+        <input
+            type="button"
+            value="重置"
+            @click="selectedCharas = []; timeline = []; result= [];"
+            >
+        
+        <br>
         <br>
 
         <table border="1px">
             <tr>
-                <th>技能/时间</th>
-                <th v-for="item in th">{{ item }}</th>
+                <th style="min-width: 150px;">技能/时间</th>
+                <th v-for="item in getTh()">{{ item }}</th>
             </tr>
             <template v-for="item in result">
                 <timeline-skill :item="item"></timeline-skill>
             </template>
         </table>
+        
+        <p>Version: 20.06.26.0 Made by GitHub@PinkChampagne17</p>
     </div>
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script src="https://cdn.bootcdn.net/ajax/libs/axios/0.19.2/axios.min.js"></script>
 
 <script src="components/added-chara-component.js"></script>
 <script src="components/added-skill-time-component.js"></script>
 <script src="components/timeline-skill-component.js"></script>
+
+<script src="js/charas.js"></script>
 
 <script src="controllers/index-controller.js"></script>

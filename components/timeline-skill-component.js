@@ -6,6 +6,8 @@ Vue.component('timeline-skill', {
     mounted: function() {
         let a = []
 
+        console.log('item',this.item)
+
         for (let i = 90; i > 0; i--) {
             a[i] = false
         }
@@ -18,6 +20,9 @@ Vue.component('timeline-skill', {
             }
         })
 
+        console.log(a)
+        alert('m')
+
         a.shift()
         
         this.timeArray = a.reverse()
@@ -26,7 +31,7 @@ Vue.component('timeline-skill', {
         <tr>
             <td>{{ item.charaName }}:{{ item.skillName }}</td>
             <template v-for="item in timeArray">
-                <td v-if="item" style="background-color: aqua;"></td>
+                <td v-if="item" style="background-color: #03a9f4;"></td>
                 <td v-else></td>
             </template>
         </tr>
