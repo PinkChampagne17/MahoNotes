@@ -60,7 +60,7 @@ Vue.component('added-skill-time', {
                 >
             <input
                 type="button"
-                value="+"
+                value="添加"
                 @click="add()"
                 >
         </div>

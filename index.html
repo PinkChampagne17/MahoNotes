@@ -7,7 +7,7 @@
         .chara-icon {
             margin-right: 10px;
             margin-bottom: 10px;
-            width: 80px;
+            width: 60px;
         }
         .input-number {
             width: 50px;
@@ -15,6 +15,9 @@
         table {
             text-align: center;
         }
+        /* body {
+            padding: 10px;
+        } */
     </style>
 </head>
 <body>
@@ -29,58 +32,79 @@
                 :title="chara.name"
                 >
         </div>
+
         已选角色：
         <div>
-            <img v-for="(chara, index) in selectedCharas"
+            <img
+                v-for="(chara, index) in selectedCharas"
                 :key="index"
                 :src="getCharaIconSrc(chara)"
                 @click="selectedCharas.splice(index, 1)"
                 class="chara-icon"
             >
+            <img
+                v-for="n in (5 - selectedCharas.length)"
+                src="static/charaicons/unknown.jpg"
+                class="chara-icon"
+                >
         </div>
-        添加技能施放时间：
-        <added-chara
-            v-for="(chara, index) in selectedCharas"
-            :chara="chara"
-            :key="index"
-            ></added-chara>
+
+        <div v-show="selectedCharas.length != 0">
+            添加技能施放时间：
+            <added-chara
+                v-for="(chara, index) in selectedCharas"
+                :chara="chara"
+                :key="index"
+                ></added-chara>
+        </div>
             
         <br>
-        已添加的技能施放时间：
-        <div v-for="(item, index) in timeline">
-            {{ item.charaName }} : {{ item.name }} {{ item.useTime | useTimeToString }}
-            <input type="button" value="-" @click="timeline.splice(index, 1)">
+
+        <div v-show="timeline.length != 0">
+            已添加的技能施放时间：
+            <div v-for="(item, index) in timeline">
+                {{ item.charaName }} : {{ item.name }} {{ item.useTime | useTimeToString }}
+                <input type="button" value="删除" @click="timeline.splice(index, 1)">
+            </div>
         </div>
+        
         <br>
         <input
             type="button"
             value="更改时间显示类型"
             @click="thIsTime = !thIsTime"
+            v-show="result.length != 0"
             >
         <input
             type="button"
-            value="重置"
+            value="清空/重置"
+            v-show="selectedCharas.length != 0"
             @click="selectedCharas = []; timeline = []; result= [];"
             >
-        
         <br>
         <br>
 
-        <table border="1px">
+        <table
+            border="1px"
+            v-show="result.length != 0"
+            >
             <tr>
                 <th style="min-width: 150px;">技能/时间</th>
                 <th v-for="item in getTh()">{{ item }}</th>
             </tr>
             <template v-for="item in result">
-                <timeline-skill :item="item"></timeline-skill>
+                <timeline-skill :item="item" :key="item.timeline.toString()"></timeline-skill>
             </template>
         </table>
         
-        <p>Version: 20.06.26.0 Made by GitHub@PinkChampagne17</p>
+        <p>Version: 20.6.26.0</p>
+        <p>程序：GitHub@PinkChampagne17</p>
+        <p>数据：真步真步王国@一方通行</p>
+        <p></p>
     </div>
 </body>
 
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
 
 <script src="components/added-chara-component.js"></script>
 <script src="components/added-skill-time-component.js"></script>

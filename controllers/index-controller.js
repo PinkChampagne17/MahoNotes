@@ -9,7 +9,6 @@ var app = new Vue({
         timeline: [],
         result: [],
         thIsTime: true,
-        canShowTimeline: false
     },
     mounted: function() {
         // let autosave = JSON.parse(localStorage.getItem(TIMELINE_AUTOSAVE_LOCALSTORAGE_KEY))
@@ -56,8 +55,6 @@ var app = new Vue({
             return th
         },
         save: function() {
-            alert('save')
-
             let data = this.timeline
 
             let skillNames = []
