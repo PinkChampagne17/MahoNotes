@@ -24,7 +24,10 @@ Vue.component('timeline-skill', {
     },
     template: `
         <tr>
-            <td>{{ item.charaName }}:{{ item.skillName }}</td>
+            <td>
+            <img :src="'/static/charaicons/' + item.charaName + '.webp'" width="30" height="30" alt="" loading="lazy">
+                {{ item.charaName }}：{{ item.skillName }}
+            </td>
             <template v-for="item in timeArray">
                 <td v-if="item" style="background-color: #03a9f4;"></td>
                 <td v-else></td>

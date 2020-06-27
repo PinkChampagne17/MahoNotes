@@ -4,7 +4,7 @@ const TIMELINE_AUTOSAVE_LOCALSTORAGE_KEY = 'pc17-clan-battle-timeline-autosave'
 var app = new Vue({
     el: '#app',
     data: {
-        charas: CHARAS,
+        charas: CHARAS.sort((a, b) => a.location - b.location),
         selectedCharas: [],
         timeline: [],
         result: [],

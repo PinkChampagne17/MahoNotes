@@ -2,7 +2,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>clanbattle</title> 
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <style>
         .chara-icon {
             margin-right: 10px;
@@ -15,14 +15,19 @@
         table {
             text-align: center;
         }
-        /* body {
-            padding: 10px;
-        } */
+        body {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
     </style>
 </head>
 <body>
     <div id="app" style="display: none;" v-show="true">
-        选择角色：
+        <nav class="navbar navbar-dark bg-dark">
+            <span class="navbar-brand mb-0 h1">选择角色（按站位排序）</span>
+        </nav>
+        <br>
+
         <div>
             <img v-for="(chara, index) in charas"
                 :key="index"
@@ -33,7 +38,12 @@
                 >
         </div>
 
-        已选角色：
+        <br>
+        <nav class="navbar navbar-dark bg-dark">
+            <span class="navbar-brand mb-0 h1">已选角色</span>
+        </nav>
+        <br>
+
         <div>
             <img
                 v-for="(chara, index) in selectedCharas"
@@ -50,7 +60,11 @@
         </div>
 
         <div v-show="selectedCharas.length != 0">
-            添加技能施放时间：
+            <br>
+                <nav class="navbar navbar-dark bg-dark">
+                    <span class="navbar-brand mb-0 h1">添加技能施放时间</span>
+                </nav>
+            <br>
             <added-chara
                 v-for="(chara, index) in selectedCharas"
                 :chara="chara"
@@ -61,21 +75,51 @@
         <br>
 
         <div v-show="timeline.length != 0">
-            已添加的技能施放时间：
-            <div v-for="(item, index) in timeline">
-                {{ item.charaName }} : {{ item.name }} {{ item.useTime | useTimeToString }}
-                <input type="button" value="删除" @click="timeline.splice(index, 1)">
-            </div>
+            <b>已添加的技能施放时间：</b>
+            <table border="1">
+                <tr>
+                    <th style="min-width: 95px;">角色名</th>
+                    <th style="min-width: 170px;">技能名</th>
+                    <th style="min-width: 95px;">时间</th>
+                    <th style="min-width: 95px;"></th>
+                </tr>
+                <template v-for="(item, index) in timeline">
+                    <tr :key="index">
+                        <td>
+                            <img
+                                :src="'/static/charaicons/' + item.charaName + '.webp'"
+                                width="30"
+                                height="30"
+                                alt=""
+                                loading="lazy"
+                                >
+                            {{ item.charaName }}
+                        </td>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.useTime | useTimeToString }}</td>
+                        <td>
+                            <input
+                                class="btn btn-danger"
+                                type="button"
+                                value="删除"
+                                @click="timeline.splice(index, 1)"
+                                >
+                        </td>
+                    </tr>
+                </template>
+            </table>
         </div>
         
         <br>
         <input
+            class="btn btn-info"
             type="button"
             value="更改时间显示类型"
             @click="thIsTime = !thIsTime"
             v-show="result.length != 0"
             >
         <input
+            class="btn btn-danger"
             type="button"
             value="清空/重置"
             v-show="selectedCharas.length != 0"
@@ -89,18 +133,34 @@
             v-show="result.length != 0"
             >
             <tr>
-                <th style="min-width: 150px;">技能/时间</th>
-                <th v-for="item in getTh()">{{ item }}</th>
+                <th style="min-width: 230px;">技能/时间</th>
+                <th style="min-width: 35px;" v-for="item in getTh()">{{ item }}</th>
             </tr>
             <template v-for="item in result">
                 <timeline-skill :item="item" :key="item.timeline.toString()"></timeline-skill>
             </template>
         </table>
         
-        <p>Version: 20.6.26.0</p>
-        <p>程序：GitHub@PinkChampagne17</p>
-        <p>数据：真步真步王国@一方通行</p>
-        <p></p>
+        <div>
+            <br>
+            Version: 20.6.27.0
+            <br>
+            <br>
+            更新日志：
+            <br>
+            v20.6.27.0
+            <br>
+            1.美化了一些样式
+            <br>
+            2.角色列表按站位排序
+            <br>
+            3.修复了能选择时间为1:31和0:00的bug
+            <br>
+            <br>
+            程序：GitHub@PinkChampagne17
+            <br>
+            数据：真步真步王国@一方通行
+        </div>
     </div>
 </body>
 

@@ -20,10 +20,6 @@ const CHARAS = [
         ]
     },
     {
-        "name": "伊绪",
-        "location": 715
-    },
-    {
         "name": "望",
         "location": 160,
         "skills": [
@@ -139,13 +135,7 @@ const CHARAS = [
     },
     {
         "name": "莉玛",
-        "location": 105,
-        "skills": [
-            {
-                "name": "毛绒绒头槌",
-                "time": 1.5
-            }
-        ]
+        "location": 105
     },
     { "name": "宫子", "location": 125 },
     {
