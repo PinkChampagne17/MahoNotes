@@ -1,8 +1,8 @@
 Vue.component('added-skill-time', {
     props: ['skill', 'charaName'],
     data: () => ({
-        minute: 0,
-        second: 1
+        minute: 1,
+        second: 30
     }),
     watch: {
         minute: function(val, oldVal) {
@@ -26,6 +26,10 @@ Vue.component('added-skill-time', {
     },
     methods: {
         add: function() {
+            if (this.minute == 0 && this.second == 0) {
+                alert('添加的时间点不能为0:00')
+                return
+            }
             app.timeline.push({
                 charaName: this.charaName,
                 ...this.skill,
@@ -41,7 +45,7 @@ Vue.component('added-skill-time', {
             })
         },
         check: function() {
-            if (this.minute == 0 && this.second < 1) {
+            if (this.minute == 0 && this.second < 0) {
                 this.second = 1
             }
             if (this.minute == 1 && this.second > 30) {

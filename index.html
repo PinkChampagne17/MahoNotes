@@ -16,8 +16,7 @@
             text-align: center;
         }
         body {
-            padding-left: 10px;
-            padding-right: 10px;
+            padding: 5px;
         }
     </style>
 </head>
@@ -26,10 +25,10 @@
         <nav class="navbar navbar-dark bg-dark">
             <span class="navbar-brand mb-0 h1">选择角色（按站位排序）</span>
         </nav>
-        <br>
 
-        <div>
-            <img v-for="(chara, index) in charas"
+        <div style="margin-top: 5px;">
+            <img
+                v-for="(chara, index) in charas"
                 :key="index"
                 :src="getCharaIconSrc(chara)"
                 @click="selectChara(chara)"
@@ -38,13 +37,11 @@
                 >
         </div>
 
-        <br>
         <nav class="navbar navbar-dark bg-dark">
             <span class="navbar-brand mb-0 h1">已选角色</span>
         </nav>
-        <br>
 
-        <div>
+        <div style="margin-top: 5px;">
             <img
                 v-for="(chara, index) in selectedCharas"
                 :key="index"
@@ -60,11 +57,9 @@
         </div>
 
         <div v-show="selectedCharas.length != 0">
-            <br>
-                <nav class="navbar navbar-dark bg-dark">
-                    <span class="navbar-brand mb-0 h1">添加技能施放时间</span>
-                </nav>
-            <br>
+            <nav class="navbar navbar-dark bg-dark">
+                <span class="navbar-brand mb-0 h1">添加技能施放时间</span>
+            </nav>
             <added-chara
                 v-for="(chara, index) in selectedCharas"
                 :chara="chara"
@@ -143,12 +138,12 @@
         
         <div>
             <br>
-            Version: 20.6.27.1
+            Version: 20.6.27.2
             <br>
             <br>
             更新日志：
             <br>
-            v20.6.27.1
+            v20.6.27.x
             <br>
             1.美化了一些样式
             <br>
