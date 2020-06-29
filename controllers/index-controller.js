@@ -29,16 +29,23 @@ var app = new Vue({
             return './static/charaicons/' + chara.name + '.webp'
         },
         selectChara: function(chara) {
-            if (this.selectedCharas.length == 5) {
-                alert("一个队伍最多5个角色")
+            if (this.charaIsSelected(chara)) {
+                this.deselectChara(chara)
             }
-            else if (this.selectedCharas.some(item => item.name == chara.name)) {
-                alert("该角色已添加")
+            else if (this.selectedCharas.length == 5) {
+                alert("一个队伍最多5个角色")
             }
             else {
                 this.selectedCharas.push(chara)
                 this.selectedCharas.sort((a, b) => b.location - a.location)
             }
+        },
+        deselectChara: function(chara) {
+            let index = this.selectedCharas.indexOf(chara)
+            this.selectedCharas.splice(index, 1)
+        },
+        charaIsSelected: function(chara) {
+            return this.selectedCharas.some(c => c.name == chara.name)
         },
         getTh: function() {
             let th = []

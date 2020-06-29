@@ -7,7 +7,14 @@
         .chara-icon {
             margin-right: 10px;
             margin-bottom: 10px;
+            opacity: 0.6;
             width: 60px;
+            
+        }
+        .selected-chara-icon{
+            opacity: 1;
+            border: 2px solid rgb(255, 165, 0);
+            border-radius: 7px;
         }
         .input-number {
             width: 50px;
@@ -32,7 +39,7 @@
                 :key="index"
                 :src="getCharaIconSrc(chara)"
                 @click="selectChara(chara)"
-                class="chara-icon"
+                :class="{ 'chara-icon': true, 'selected-chara-icon': selectedCharas.some(c => c.name == chara.name) }"
                 :title="chara.name"
                 >
         </div>
@@ -46,8 +53,9 @@
                 v-for="(chara, index) in selectedCharas"
                 :key="index"
                 :src="getCharaIconSrc(chara)"
-                @click="selectedCharas.splice(index, 1)"
+                @click="deselectChara(chara)"
                 class="chara-icon"
+                style="opacity: 1;"
             >
             <img
                 v-for="n in (5 - selectedCharas.length)"
@@ -135,13 +143,26 @@
                 <timeline-skill :item="item" :key="item.timeline.toString()"></timeline-skill>
             </template>
         </table>
+
+        <br>
+        <b>其他工具</b>
+        <br>
+        <a href="https://www.pcrdfans.com/tools/timeline" target="_blank">时间轴计算器(测试版)_公主连结Re:dive Fan Club</a>
+        <br>
+        <a href="https://wiki.biligame.com/pcr/角色图鉴" target="_blank">角色图鉴_公主连结WIKI_BWIKI</a>
         
         <div>
             <br>
-            Version: 20.6.27.2
+            Version: 20.6.29.0
             <br>
             <br>
             更新日志：
+            <br>
+            v20.6.29.x
+            <br>
+            1.添加了其他工具的超链接
+            <br>
+            2.添加了选择角色时的反馈效果（模仿pcrdfans的）
             <br>
             v20.6.27.x
             <br>
