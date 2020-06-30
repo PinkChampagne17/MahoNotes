@@ -9,7 +9,6 @@
             margin-bottom: 10px;
             opacity: 0.6;
             width: 60px;
-            
         }
         .selected-chara-icon{
             opacity: 1;
@@ -37,9 +36,9 @@
             <img
                 v-for="(chara, index) in charas"
                 :key="index"
-                :src="getCharaIconSrc(chara)"
+                :src="chara.imgSrc"
                 @click="selectChara(chara)"
-                :class="{ 'chara-icon': true, 'selected-chara-icon': selectedCharas.some(c => c.name == chara.name) }"
+                :class="{'chara-icon': true, 'selected-chara-icon': selectedCharas.some(c => c.name == chara.name) }"
                 :title="chara.name"
                 >
         </div>
@@ -52,14 +51,14 @@
             <img
                 v-for="(chara, index) in selectedCharas"
                 :key="index"
-                :src="getCharaIconSrc(chara)"
+                :src="chara.imgSrc"
                 @click="deselectChara(chara)"
                 class="chara-icon"
                 style="opacity: 1;"
             >
             <img
                 v-for="n in (5 - selectedCharas.length)"
-                src="static/charaicons/unknown.jpg"
+                src="./static/charaicons/unknown.jpg"
                 class="chara-icon"
                 >
         </div>
@@ -90,11 +89,10 @@
                     <tr :key="index">
                         <td>
                             <img
-                                :src="'static/charaicons/' + item.charaName + '.webp'"
+                                :src="`./static/charaicons/${item.charaName}.webp`"
                                 width="30"
                                 height="30"
-                                alt=""
-                                loading="lazy"
+                                :alt="item.charaName"
                                 >
                             {{ item.charaName }}
                         </td>
@@ -144,15 +142,17 @@
             </template>
         </table>
 
+        </div>
+
         <br>
         <b>其他工具</b>
         <br>
         <a href="https://www.pcrdfans.com/tools/timeline" target="_blank">时间轴计算器(测试版)_公主连结Re:dive Fan Club</a>
         <br>
         <a href="https://wiki.biligame.com/pcr/角色图鉴" target="_blank">角色图鉴_公主连结WIKI_BWIKI</a>
-        
+        <br>
+        <br>
         <div>
-            <br>
             Version: 20.6.30.0
             <br>
             <br>
@@ -186,7 +186,7 @@
     </div>
 </body>
 
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
 <script src="components/added-chara-component.js"></script>
 <script src="components/added-skill-time-component.js"></script>
