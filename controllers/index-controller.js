@@ -1,49 +1,32 @@
-const IS_DEVELOPMENT = false
 const TIMELINE_AUTOSAVE_LOCALSTORAGE_KEY = 'pc17-clan-battle-timeline-autosave'
+// const TIMELINE_RESULT_LOCALSTORAGE_KEY = 'pc17-clan-battle-timeline-Result'
 
 var app = new Vue({
     el: '#app',
     data: {
-        charas: [],
+        charas: CHARAS.sort((a, b) => a.location - b.location),
         selectedCharas: [],
         timeline: [],
         result: [],
         thIsTime: true,
     },
     mounted: function() {
-        if (IS_DEVELOPMENT) {
-            let autosave = JSON.parse(localStorage.getItem(TIMELINE_AUTOSAVE_LOCALSTORAGE_KEY))
-            this.selectedCharas = autosave.selectedCharas
-            this.timeline = autosave.timeline
+        // let autosave = JSON.parse(localStorage.getItem(TIMELINE_AUTOSAVE_LOCALSTORAGE_KEY))
+        // this.selectedCharas = autosave.selectedCharas
+        // this.timeline = autosave.timeline
+    },
+    watch: {
+        timeline: function() {
+            // localStorage.setItem(TIMELINE_AUTOSAVE_LOCALSTORAGE_KEY, JSON.stringify({
+            //     selectedCharas: this.selectedCharas,
+            //     timeline: this.timeline
+            // }))
+            this.save()
         }
-
-        this.charas = this.getCharas({ orderBy: 'location' })
     },
     methods: {
-        getCharas: function(params) {
-            let charas = CHARAS
-
-            if (params) Object.keys(params).forEach(p => {
-                switch (p) {
-                    case 'orderBy':
-                        let value = params[p]
-                        charas.sort((a, b) => a[value] - b[value])
-                        break;
-                    
-                    case 'name':
-                        charas = charas.filter(c => c.name == params.name)
-                        break
-                }
-            })
-
-            charas.forEach(c => {
-                c.imgSrc = `./static/charaicons/${c.name}.webp`
-            })
-
-            return charas
-        },
         getCharaIconSrc: function(chara) {
-            return `./static/charaicons/${chara.name}.webp`
+            return './static/charaicons/' + chara.name + '.webp'
         },
         selectChara: function(chara) {
             if (this.charaIsSelected(chara)) {
@@ -77,17 +60,8 @@ var app = new Vue({
                 }
             }
             return th
-        }
-    },
-    watch: {
-        timeline: function() {
-            if (IS_DEVELOPMENT) {
-                localStorage.setItem(TIMELINE_AUTOSAVE_LOCALSTORAGE_KEY, JSON.stringify({
-                    selectedCharas: this.selectedCharas,
-                    timeline: this.timeline
-                }))
-            }
-
+        },
+        save: function() {
             let data = this.timeline
 
             let skillNames = []
