@@ -12,7 +12,6 @@ Vue.component('added-skill-time', {
             if (val > 1) {
                 this.minute = 1
             }
-            this.check()
         },
         second: function(val, oldVal) {
             if (val < 0) {
@@ -21,15 +20,15 @@ Vue.component('added-skill-time', {
             if (val >= 60) {
                 this.second = 59
             }
-            this.check()
         }
     },
     methods: {
         add: function() {
-            if (this.minute == 0 && this.second == 0) {
-                alert('添加的时间点不能为0:00')
+            if ((this.minute == 0 && this.second <= 0) || (this.minute == 1 && this.second > 30)) {
+                alert('添加的时间必须在0:01至1:30之间')
                 return
             }
+
             app.timeline.push({
                 charaName: this.charaName,
                 ...this.skill,
@@ -38,19 +37,12 @@ Vue.component('added-skill-time', {
                     second: parseFloat(this.second)
                 }
             })
+            
             app.timeline.sort((a, b)=> {
                 let x = a.useTime
                 let y = b.useTime
                 return (y.minute * 60 + y.second) - (x.minute * 60 + x.second)
             })
-        },
-        check: function() {
-            if (this.minute == 0 && this.second < 0) {
-                this.second = 1
-            }
-            if (this.minute == 1 && this.second > 30) {
-                this.second = 30
-            }
         }
     },
     template: `
