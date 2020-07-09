@@ -17,33 +17,32 @@ var app = new Vue({
             this.timeline = autosave.timeline
         }
 
-        this.charas = this.getCharas({ orderBy: 'location' })
+        this.charas = this.getCharas()
     },
     methods: {
-        getCharas: function(params) {
+        getCharas: function() {
             let charas = CHARAS
 
-            if (params) Object.keys(params).forEach(p => {
-                switch (p) {
-                    case 'orderBy':
-                        let value = params[p]
-                        charas.sort((a, b) => a[value] - b[value])
-                        break;
-                    
-                    case 'name':
-                        charas = charas.filter(c => c.name == params.name)
-                        break
-                }
-            })
-
             charas.forEach(c => {
-                c.imgSrc = `./static/charaicons/${c.name}.webp`
+                c.imgSrc = this.getCharaIconSrcByName(c.name)
             })
 
-            return charas
+            return charas.sort((a, b) => a['location'] - b['location'])
         },
-        getCharaIconSrc: function(chara) {
-            return `./static/charaicons/${chara.name}.webp`
+        getCharaIconSrcByName: function(name) {
+            return `./static/charaicons/${name}.webp`
+        },
+        screeningChara: function(param) {
+            let min = 0
+            let max = 1000
+
+            switch (param) {
+                case '前卫':            max = 359;  break;
+                case '中卫': min = 360; max = 575;  break;
+                case '后卫': min = 625;             break;
+            }
+
+            this.charas = this.getCharas().filter(c => min <= c.location && c.location <= max)
         },
         selectChara: function(chara) {
             if (this.charaIsSelected(chara)) {

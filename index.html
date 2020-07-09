@@ -29,11 +29,16 @@
 <body>
     <div id="app" style="display: none;" v-show="true">
         <nav class="navbar navbar-dark bg-dark">
-            <span class="navbar-brand mb-0 h1">选择角色（按站位排序）</span>
+            <span class="navbar-brand mb-0 h1">选择角色</span>
         </nav>
-
         <div style="margin-top: 5px;">
-            <img
+            <button type="button" class="btn btn-secondary" @click="screeningChara()">全部</button>
+            <button type="button" class="btn btn-info" @click="screeningChara('后卫')">后卫</button>
+            <button type="button" class="btn btn-warning" @click="screeningChara('中卫')">中卫</button>
+            <button type="button" class="btn btn-danger" @click="screeningChara('前卫')">前卫</button>
+        </div>
+        <div style="margin-top: 5px;">
+            <img 
                 v-for="(chara, index) in charas"
                 :key="index"
                 :src="chara.imgSrc"
@@ -89,7 +94,7 @@
                     <tr :key="index">
                         <td>
                             <img
-                                :src="`./static/charaicons/${item.charaName}.webp`"
+                                :src="getCharaIconSrcByName(item.charaName)"
                                 width="30"
                                 height="30"
                                 :alt="item.charaName"
@@ -153,10 +158,16 @@
         <br>
         <br>
         <div>
-            Version: 20.6.30.0
+            Version: 20.7.9.0
             <br>
             <br>
             更新日志：
+            <br>
+            v20.7.9.x
+            <br>
+            1.新增角色“伊莉亚”
+            <br>
+            2.选择角色时，可以通过角色站位来筛选了
             <br>
             v20.6.30.x
             <br>
@@ -182,6 +193,9 @@
             程序：GitHub@PinkChampagne17
             <br>
             数据：真步真步王国@一方通行
+            <br>
+            Powered by Vue.js & Bootstrap v4 on GitHub Pages
+            <br>
         </div>
     </div>
 </body>

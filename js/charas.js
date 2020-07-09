@@ -563,5 +563,15 @@ const CHARAS = [
                 "time": 1
             }
         ]
+    },
+    {
+        "name": "伊莉亚",
+        "location": 425,
+        "skills": [
+            {
+                "name": "朱色之噬",
+                "time": 1
+            }
+        ]
     }
 ]
