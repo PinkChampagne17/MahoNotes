@@ -24,19 +24,16 @@ var app = new Vue({
             let charas = CHARAS
 
             charas.forEach(c => {
-                c.imgSrc = this.getCharaIconSrcByName(c.name)
+                c.imgSrc = `./static/charaicons/${c.name}.webp`
             })
 
             return charas.sort((a, b) => a['location'] - b['location'])
         },
-        getCharaIconSrcByName: function(name) {
-            return `./static/charaicons/${name}.webp`
-        },
-        screeningChara: function(param) {
+        screeningChara: function(position) {
             let min = 0
             let max = 1000
 
-            switch (param) {
+            switch (position) {
                 case '前卫':            max = 359;  break;
                 case '中卫': min = 360; max = 575;  break;
                 case '后卫': min = 625;             break;
@@ -102,7 +99,7 @@ var app = new Vue({
                 let t = data.filter(item => item.name == n)
                 let timeline = t.map(({ useTime }) => useTime.minute * 60 + useTime.second)
                 result.push({
-                    charaName: t[0].charaName,
+                    chara: t[0].chara,
                     skillName: t[0].name,
                     time: t[0].time,
                     timeline,

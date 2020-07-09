@@ -1,4 +1,4 @@
-Vue.component('added-chara', {
+Vue.component('selected-chara-skills', {
     props: ['chara'],
     template:`
         <div>
@@ -6,18 +6,18 @@ Vue.component('added-chara', {
                 <nav class="navbar navbar-light bg-light">
                     <a class="navbar-brand" href="#">
                         <img
-                            :src="'static/charaicons/' + chara.name + '.webp'" width="30" height="30"
-                            alt="" loading="lazy"
+                            :src="chara.imgSrc" width="30" height="30"
+                            loading="lazy"
                         >
                         {{ chara.name }}
                     </a>
                 </nav>
-                <added-skill-time
+                <add-skill-time
                     v-for="(skill, index) in chara.skills"
                     :key="index"
                     :skill="skill"
-                    :charaName="chara.name"
-                ></added-skill-time>
+                    :chara="chara"
+                ></add-skill-time>
             </template>
         </div>
     `

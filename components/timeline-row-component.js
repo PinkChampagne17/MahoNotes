@@ -1,4 +1,4 @@
-Vue.component('timeline-skill', {
+Vue.component('timeline-row', {
     props: ['item'],
     data: () => ({
         timeArray: []
@@ -25,8 +25,8 @@ Vue.component('timeline-skill', {
     template: `
         <tr>
             <td>
-            <img :src="'static/charaicons/' + item.charaName + '.webp'" width="30" height="30" alt="" loading="lazy">
-                {{ item.charaName }}：{{ item.skillName }}
+            <img :src="item.chara.imgSrc" :alt="item.chara.name" width="30" height="30" loading="lazy">
+                {{ item.chara.name }}：{{ item.skillName }}
             </td>
             <template v-for="item in timeArray">
                 <td v-if="item" style="background-color: #03a9f4;"></td>

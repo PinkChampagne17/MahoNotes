@@ -1,5 +1,5 @@
-Vue.component('added-skill-time', {
-    props: ['skill', 'charaName'],
+Vue.component('add-skill-time', {
+    props: ['skill', 'chara'],
     data: () => ({
         minute: 1,
         second: 30
@@ -30,8 +30,8 @@ Vue.component('added-skill-time', {
             }
 
             app.timeline.push({
-                charaName: this.charaName,
                 ...this.skill,
+                chara: this.chara,
                 useTime: {
                     minute: parseFloat(this.minute),
                     second: parseFloat(this.second)
