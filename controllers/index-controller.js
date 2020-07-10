@@ -22,14 +22,12 @@ var app = new Vue({
     methods: {
         getCharas: function() {
             let charas = CHARAS
+            
+            charas.forEach(c => c.imgSrc = `./static/charaicons/${c.name}.webp`)
 
-            charas.forEach(c => {
-                c.imgSrc = `./static/charaicons/${c.name}.webp`
-            })
-
-            return charas.sort((a, b) => a['location'] - b['location'])
+            return charas.sort((a, b) => a.location - b.location)
         },
-        screeningChara: function(position) {
+        screeningCharaByPosition: function(position) {
             let min = 0
             let max = 1000
 

@@ -32,10 +32,10 @@
             <span class="navbar-brand mb-0 h1">选择角色</span>
         </nav>
         <div style="margin-top: 5px;">
-            <button type="button" class="btn btn-secondary" @click="screeningChara()">全部</button>
-            <button type="button" class="btn btn-info" @click="screeningChara('后卫')">后卫</button>
-            <button type="button" class="btn btn-warning" @click="screeningChara('中卫')">中卫</button>
-            <button type="button" class="btn btn-danger" @click="screeningChara('前卫')">前卫</button>
+            <button type="button" class="btn btn-secondary" @click="screeningCharaByPosition()">全部</button>
+            <button type="button" class="btn btn-info" @click="screeningCharaByPosition('后卫')">后卫</button>
+            <button type="button" class="btn btn-warning" @click="screeningCharaByPosition('中卫')">中卫</button>
+            <button type="button" class="btn btn-danger" @click="screeningCharaByPosition('前卫')">前卫</button>
         </div>
         <div style="margin-top: 5px;">
             <img 
@@ -101,7 +101,7 @@
                                 height="30"
                                 :alt="item.chara.name"
                                 >
-                            {{ item.charaName }}
+                            {{ item.chara.name }}
                         </td>
                         <td>{{ item.name }}</td>
                         <td>{{ item.useTime | useTimeToString }}</td>
@@ -134,10 +134,7 @@
             <br>
             <br>
     
-            <table
-                border="1px"
-                v-show="result.length != 0"
-                >
+            <table border="1px" v-show="result.length != 0">
                 <tr>
                     <th style="min-width: 280px;">技能/时间</th>
                     <th style="min-width: 35px;" v-for="item in getTh()">{{ item }}</th>
