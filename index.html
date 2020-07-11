@@ -1,8 +1,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>clanbattle</title> 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>真步笔记 - 一个简单的PCR公会战计轴器</title> 
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+        crossorigin="anonymous"
+    >
     <style>
         .chara-icon {
             margin-right: 10px;
@@ -10,7 +15,7 @@
             opacity: 0.6;
             width: 60px;
         }
-        .selected-chara-icon{
+        .selected-chara-icon {
             opacity: 1;
             border: 2px solid rgb(255, 165, 0);
             border-radius: 7px;
@@ -32,21 +37,18 @@
             <span class="navbar-brand mb-0 h1">选择角色</span>
         </nav>
         <div style="margin-top: 5px;">
-            <button type="button" class="btn btn-secondary" @click="screeningCharaByPosition()">全部</button>
-            <button type="button" class="btn btn-info" @click="screeningCharaByPosition('后卫')">后卫</button>
-            <button type="button" class="btn btn-warning" @click="screeningCharaByPosition('中卫')">中卫</button>
-            <button type="button" class="btn btn-danger" @click="screeningCharaByPosition('前卫')">前卫</button>
-        </div>
-        <div style="margin-top: 5px;">
-            <img 
-                v-for="(chara, index) in charas"
-                :key="index"
-                :src="chara.imgSrc"
-                :title="chara.name"
-                class="chara-icon"
-                :class="{ 'selected-chara-icon' : selectedCharas.some(c => c.name == chara.name) }"
-                @click="selectChara(chara)"
+            <template v-for="(chara, index) in charas">
+                <img 
+                    :key="index"
+                    :src="chara.imgSrc"
+                    :title="chara.name"
+                    class="chara-icon"
+                    :class="{ 'selected-chara-icon': selectedCharas.some(c => c.name == chara.name) }"
+                    @click="selectChara(chara)"
                 >
+                <hr v-if="['静流', '依里'].some(c => c == chara.name)">
+            </template>
+            
         </div>
 
         <nav class="navbar navbar-dark bg-dark">
@@ -67,7 +69,7 @@
                 v-for="n in (5 - selectedCharas.length)"
                 src="./static/charaicons/unknown.jpg"
                 class="chara-icon"
-                >
+            >
         </div>
 
         <div v-show="selectedCharas.length != 0">
@@ -78,7 +80,7 @@
                 v-for="(chara, index) in selectedCharas"
                 :chara="chara"
                 :key="index"
-                ></selected-chara-skills>
+            ></selected-chara-skills>
         </div>
             
         <br>
@@ -122,15 +124,13 @@
                 type="button"
                 value="更改时间显示类型"
                 @click="thIsTime = !thIsTime"
-                v-show="result.length != 0"
-                >
+            >
             <input
                 class="btn btn-danger"
                 type="button"
                 value="清空/重置"
-                v-show="selectedCharas.length != 0"
-                @click="selectedCharas = []; timeline = []; result= [];"
-                >
+                @click="reset()"
+            >
             <br>
             <br>
     
@@ -143,48 +143,46 @@
                     <timeline-row :item="item" :key="item.timeline.toString()"></timeline-row>
                 </template>
             </table>
-    
+            注：
             <br>
+            蓝色方块为技能buff的持续时间；
+            <br>
+            ctrl+鼠标滚轮可以缩放视图大小。
         </div>
-        
 
+        <br>
+        <br>
+        
         <b>其他工具</b>
         <br>
-
         <a href="https://www.pcrdfans.com/tools/timeline" target="_blank">时间轴计算器(测试版)_公主连结Re:dive Fan Club</a>
         <br>
         <a href="https://wiki.biligame.com/pcr/角色图鉴" target="_blank">角色图鉴_公主连结WIKI_BWIKI</a>
+
         <br>
         <br>
         
-        <div>
-            Version: 20.7.9.3
-            <br>
-            <br>
-            更新日志：
-            <br>
-            v20.7.9.x
-            <br>
-            1.新增角色“伊莉亚”、“紡希”、“貪吃佩可（夏日）”
-            <br>
-            2.选择角色时，可以通过角色站位来筛选了
-            <br>
-            <br>
-            程序：
-            <a href="https://github.com/PinkChampagne17" target="_blank">
-                <img alt="GitHub followers" src="https://img.shields.io/github/followers/PinkChampagne17?style=social">
-            </a>
-            <br>
-            数据：真步真步王国@一方通行
-            <br>
-            项目地址：
-            <a href="https://github.com/PinkChampagne17/MahoNotes" target="_blank">
-                <img alt="GitHub stars" src="https://img.shields.io/github/stars/PinkChampagne17/MahoNotes?style=social">
-            </a>
-            <br>
-            Powered by Vue.js & Bootstrap v4 on GitHub Pages
-            <br>
-        </div>
+        Version: 20.7.9.4
+        <br>
+        <br>
+        更新日志：
+        <br>
+        v20.7.9.x
+        <br>
+        1.新增角色“伊莉亚”、“紡希”、“貪吃佩可（夏日）”
+        <br>
+        2.选择角色时，角色已经通过站位来进行分类了
+        <br>
+        <br>
+        项目地址：
+        <a href="https://github.com/PinkChampagne17/MahoNotes" target="_blank">
+            <img alt="GitHub stars" src="https://img.shields.io/github/stars/PinkChampagne17/MahoNotes?style=social">
+        </a>
+        <br>
+        数据整理：真步真步王国@一方通行
+        <br>
+        Powered by Vue.js & Bootstrap v4 on GitHub Pages
+        <br>
     </div>
 </body>
 

@@ -17,28 +17,11 @@ var app = new Vue({
             this.timeline = autosave.timeline
         }
 
-        this.charas = this.getCharas()
+        this.charas = CHARAS
+        this.charas.forEach(c => c.imgSrc = `./static/charaicons/${c.name}.webp`)
+        this.charas.sort((a, b) => a.location - b.location)
     },
     methods: {
-        getCharas: function() {
-            let charas = CHARAS
-            
-            charas.forEach(c => c.imgSrc = `./static/charaicons/${c.name}.webp`)
-
-            return charas.sort((a, b) => a.location - b.location)
-        },
-        screeningCharaByPosition: function(position) {
-            let min = 0
-            let max = 1000
-
-            switch (position) {
-                case '前卫':            max = 359;  break;
-                case '中卫': min = 360; max = 575;  break;
-                case '后卫': min = 625;             break;
-            }
-
-            this.charas = this.getCharas().filter(c => min <= c.location && c.location <= max)
-        },
         selectChara: function(chara) {
             if (this.charaIsSelected(chara)) {
                 this.deselectChara(chara)
@@ -71,6 +54,14 @@ var app = new Vue({
                 }
             }
             return th
+        },
+        reset: function() {
+            this.clearArray(this.selectedCharas)
+            this.clearArray(this.timeline)
+            this.clearArray(this.result)
+        },
+        clearArray: function(array) {
+            array.splice(0, array.length);
         }
     },
     watch: {
@@ -112,6 +103,11 @@ var app = new Vue({
             let minute = value.minute
             let second = value.second < 10 ? '0' + value.second : value.second
             return `${minute}:${second}` 
+        }
+    },
+    provide: function () {
+        return {
+            timeline: this.timeline
         }
     }
 })
