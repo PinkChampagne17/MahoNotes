@@ -573,5 +573,29 @@ const CHARAS = [
                 "time": 1
             }
         ]
+    },
+    {
+        "name": "紡希",
+        "location": 195,
+        "skills": [
+            {
+                "name": "不幸的束縛",
+                "time": 2.5
+            }
+        ]
+    },
+    {
+        "name": "貪吃佩可（夏日）",
+        "location": 235,
+        "skills": [
+            {
+                "name": "公主浪花飛濺",
+                "time": 1
+            },
+            {
+                "name": "點心時間",
+                "time": 12
+            }
+        ]
     }
 ]
