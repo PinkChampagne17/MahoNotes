@@ -107,7 +107,7 @@
                             {{ item.chara.name }}
                         </td>
                         <td>{{ item.name }}</td>
-                        <td>{{ item.useTime | useTimeToString }}</td>
+                        <td>{{ useTimeToString(item.useTime) }}</td>
                         <td>
                             <input
                                 class="btn btn-danger"

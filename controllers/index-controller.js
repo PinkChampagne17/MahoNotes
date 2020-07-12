@@ -53,7 +53,10 @@ var app = new Vue({
                 if (this.thIsTime) {
                     let minute = parseInt(i / 60)
                     let second = i % 60
-                    th.push(`${minute}:${second < 10 ? '0' + second : second}`)
+
+                    let timeString = this.useTimeToString({ minute, second })
+                    
+                    th.push(timeString)
                 }
                 else {
                     th.push(i < 10 ? '0' + i : i)
@@ -68,6 +71,9 @@ var app = new Vue({
         },
         clearArray: function(array) {
             array.splice(0, array.length);
+        },
+        useTimeToString: function({minute, second}) {
+            return `${minute}:${second < 10 ? '0' + second : second}` 
         }
     },
     watch: {
@@ -79,36 +85,20 @@ var app = new Vue({
                 }))
             }
 
-            let data = this.timeline
+            this.clearArray(this.result)
 
-            let skillNames = []
-            let result = []
-
-            data.forEach(item => {
-                if (!skillNames.some(n => n == item.name)) {
-                    skillNames.push(item.name)
-                }
-            })
-
+            let skillNames = [...new Set(this.timeline.map(item => item.name))]
+            
             skillNames.forEach(n => {
-                let t = data.filter(item => item.name == n)
-                let timeline = t.map(({ useTime }) => useTime.minute * 60 + useTime.second)
-                result.push({
-                    chara: t[0].chara,
-                    skillName: t[0].name,
-                    time: t[0].time,
-                    timeline,
-                })
-            })
+                let t = this.timeline.filter(item => item.name == n)
 
-            this.result = result
-        }
-    },
-    filters: {
-        useTimeToString: function(value) {
-            let minute = value.minute
-            let second = value.second < 10 ? '0' + value.second : value.second
-            return `${minute}:${second}` 
+                let chara       = t[0].chara
+                let skillName   = t[0].name
+                let time        = t[0].time
+                let timeline    = t.map(({ useTime }) => useTime.minute * 60 + useTime.second)
+
+                this.result.push({ chara, skillName, time, timeline })
+            })
         }
     }
 })
