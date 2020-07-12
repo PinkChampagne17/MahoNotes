@@ -9,6 +9,12 @@ var app = new Vue({
         timeline: [],
         result: [],
         thIsTime: true,
+        charaIconsUrlBase: './static/img/charaicons'
+    },
+    provide: function () {
+        return {
+            timeline: this.timeline
+        }
     },
     mounted: function() {
         if (IS_DEVELOPMENT) {
@@ -18,7 +24,7 @@ var app = new Vue({
         }
 
         this.charas = CHARAS
-        this.charas.forEach(c => c.imgSrc = `./static/charaicons/${c.name}.webp`)
+        this.charas.forEach(c => c.imgSrc = `${this.charaIconsUrlBase}/${c.name}.webp`)
         this.charas.sort((a, b) => a.location - b.location)
     },
     methods: {
@@ -55,7 +61,7 @@ var app = new Vue({
             }
             return th
         },
-        reset: function() {
+        clear: function() {
             this.clearArray(this.selectedCharas)
             this.clearArray(this.timeline)
             this.clearArray(this.result)
@@ -103,11 +109,6 @@ var app = new Vue({
             let minute = value.minute
             let second = value.second < 10 ? '0' + value.second : value.second
             return `${minute}:${second}` 
-        }
-    },
-    provide: function () {
-        return {
-            timeline: this.timeline
         }
     }
 })

@@ -48,8 +48,7 @@ Vue.component('add-skill-time', {
     },
     template: `
         <div>
-            <div style="text-align: center; display: inline-block; min-width: 160px;"
-                >
+            <div style="text-align: center; display: inline-block; min-width: 160px;">
                 {{ skill.name }}
             </div>
             <input 
@@ -58,7 +57,7 @@ Vue.component('add-skill-time', {
                 min="0"
                 max="1"
                 v-model="minute"
-                >
+            >
             :
             <input
                 class="input-number"
@@ -66,12 +65,12 @@ Vue.component('add-skill-time', {
                 min="0"
                 max="59"
                 v-model="second"
-                >
+            >
             <input
                 type="button"
                 value="添加"
                 @click="add()"
-                >
+            >
         </div>
     `
 })
