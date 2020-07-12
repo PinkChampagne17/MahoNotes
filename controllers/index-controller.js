@@ -48,21 +48,14 @@ var app = new Vue({
             return this.selectedCharas.some(c => c.name == chara.name)
         },
         getTh: function() {
-            let th = []
-            for (let i = 90; i > 0; i--) {
-                if (this.thIsTime) {
-                    let minute = parseInt(i / 60)
-                    let second = i % 60
-
-                    let timeString = this.useTimeToString({ minute, second })
-                    
-                    th.push(timeString)
-                }
-                else {
-                    th.push(i < 10 ? '0' + i : i)
-                }
+            let times = [...Array(90)].map((v, k) => k + 1).reverse();
+            
+            if (this.thIsTime) {
+                return times.map(v => this.useTimeToString({ minute: parseInt(v / 60), second: v % 60 }))
             }
-            return th
+            else {
+                return times.map(v => v < 10 ? '0' + v : v)
+            }
         },
         clear: function() {
             this.clearArray(this.selectedCharas)
