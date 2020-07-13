@@ -3,14 +3,14 @@ var app = new Vue({
     data: {
         charas: [],
         selectedCharas: [],
-        timeline: [],
-        result: [],
+        addedSkillsAndTimes: [],
+        timelines: [],
         timesRowDispIsTime: true,
         charaIconsUrlBase: './static/img/charaicons'
     },
     provide: function () {
         return {
-            timeline: this.timeline
+            addedSkillsAndTimes: this.addedSkillsAndTimes
         }
     },
     mounted: function() {
@@ -40,8 +40,8 @@ var app = new Vue({
         },
         clear: function() {
             this.clearArray(this.selectedCharas)
-            this.clearArray(this.timeline)
-            this.clearArray(this.result)
+            this.clearArray(this.addedSkillsAndTimes)
+            this.clearArray(this.timelines)
         },
         clearArray: function(array) {
             array.splice(0, array.length);
@@ -51,20 +51,20 @@ var app = new Vue({
         }
     },
     watch: {
-        timeline: function() {
-            this.clearArray(this.result)
+        addedSkillsAndTimes: function() {
+            this.clearArray(this.timelines)
 
-            let skillNames = [...new Set(this.timeline.map(item => item.name))]
+            let skillNames = [...new Set(this.addedSkillsAndTimes.map(item => item.name))]
             
             skillNames.forEach(n => {
-                let t = this.timeline.filter(item => item.name == n)
+                let t = this.addedSkillsAndTimes.filter(item => item.name == n)
 
                 let chara       = t[0].chara
                 let skillName   = t[0].name
                 let time        = t[0].time
                 let timeline    = t.map(({ useTime }) => useTime.minute * 60 + useTime.second)
 
-                this.result.push({ chara, skillName, time, timeline })
+                this.timelines.push({ chara, skillName, time, timeline })
             })
         }
     },

@@ -12,12 +12,12 @@ Vue.component('selected-chara-skills', {
                         {{ chara.name }}
                     </a>
                 </nav>
-                <add-skill-time
+                <add-skill-and-time
                     v-for="(skill, index) in chara.skills"
                     :key="index"
                     :skill="skill"
                     :chara="chara"
-                ></add-skill-time>
+                ></add-skill-and-time>
             </template>
         </div>
     `

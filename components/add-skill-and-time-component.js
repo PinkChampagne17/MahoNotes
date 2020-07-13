@@ -1,6 +1,6 @@
-Vue.component('add-skill-time', {
+Vue.component('add-skill-and-time', {
     props: ['skill', 'chara'],
-    inject: ['timeline'],
+    inject: ['addedSkillsAndTimes'],
     data: () => ({
         minute: 1,
         second: 30
@@ -30,7 +30,7 @@ Vue.component('add-skill-time', {
                 return
             }
 
-            this.timeline.push({
+            this.addedSkillsAndTimes.push({
                 ...this.skill,
                 chara: this.chara,
                 useTime: {
@@ -39,7 +39,7 @@ Vue.component('add-skill-time', {
                 }
             })
             
-            this.timeline.sort((a, b)=> {
+            this.addedSkillsAndTimes.sort((a, b)=> {
                 let x = a.useTime
                 let y = b.useTime
                 return (y.minute * 60 + y.second) - (x.minute * 60 + x.second)
