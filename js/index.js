@@ -45,7 +45,7 @@ var app = new Vue({
             this.selectedCharas.splice(index, 1)
         },
         charaIsSelected: function(chara) {
-            return this.selectedCharas.some(c => c.name == chara.name)
+            return this.selectedCharas.includes(chara)
         },
         getTh: function() {
             let times = [...Array(90)].map((v, k) => k + 1).reverse();

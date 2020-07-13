@@ -1,26 +1,17 @@
 Vue.component('timeline-row', {
     props: ['item'],
     data: () => ({
-        timeArray: []
+        timeArray: [...Array(90)].map(value => false)
     }),
     mounted: function() {
-        let a = []
-
-        for (let i = 90; i > 0; i--) {
-            a[i] = false
-        }
-        
         this.item.timeline.forEach(t => {
-            for (let i = t; i > t - this.item.time; i--) {
-                if (i > 0) {
-                    a[i] = true
+            for (let i = t - 1; i >= t - this.item.time; i--) {
+                if (i >= 0) {
+                    this.timeArray[i] = true
                 }
             }
         })
-        
-        a.shift()
-        
-        this.timeArray = a.reverse()
+        this.timeArray.reverse()
     },
     template: `
         <tr>
