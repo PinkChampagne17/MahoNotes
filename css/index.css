@@ -1,0 +1,24 @@
+.chara-icon {
+    margin-right: 10px;
+    margin-bottom: 10px;
+    opacity: 0.6;
+    width: 60px;
+}
+
+.selected-chara-icon {
+    opacity: 1;
+    border: 2px solid rgb(255, 165, 0);
+    border-radius: 7px;
+}
+
+.input-number {
+    width: 50px;
+}
+
+table {
+    text-align: center;
+}
+
+body {
+    padding: 5px;
+}

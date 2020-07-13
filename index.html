@@ -1,35 +1,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>真步笔记 - 一个简单的公主连结R公会战计轴器</title> 
+    <link rel="stylesheet" href="./css/index.css">
     <link
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
         crossorigin="anonymous"
     >
-    <style>
-        .chara-icon {
-            margin-right: 10px;
-            margin-bottom: 10px;
-            opacity: 0.6;
-            width: 60px;
-        }
-        .selected-chara-icon {
-            opacity: 1;
-            border: 2px solid rgb(255, 165, 0);
-            border-radius: 7px;
-        }
-        .input-number {
-            width: 50px;
-        }
-        table {
-            text-align: center;
-        }
-        body {
-            padding: 5px;
-        }
-    </style>
+    <title>真步笔记 - 一个简单的公主连结R公会战计轴器</title>
 </head>
 <body>
     <div id="app" style="display: none;" v-show="true">
@@ -77,11 +56,29 @@
             <nav class="navbar navbar-dark bg-dark">
                 <span class="navbar-brand mb-0 h1">添加技能施放时间</span>
             </nav>
-            <selected-chara-skills
+            <div
                 v-for="(chara, index) in selectedCharas"
                 :chara="chara"
                 :key="index"
-            ></selected-chara-skills>
+            >
+                <template v-if="chara.skills">
+                    <nav class="navbar navbar-light bg-light">
+                        <a class="navbar-brand" href="#">
+                            <img
+                                :src="chara.imgSrc" width="30" height="30"
+                                loading="lazy"
+                            >
+                            {{ chara.name }}
+                        </a>
+                    </nav>
+                    <add-skill-and-time
+                        v-for="(skill, index) in chara.skills"
+                        :key="index"
+                        :skill="skill"
+                        :chara="chara"
+                    ></add-skill-and-time>
+                </template>
+            </div>
         </div>
             
         <br>
@@ -141,7 +138,7 @@
                     <th style="min-width: 35px;" v-for="item in timesRow">{{ item }}</th>
                 </tr>
                 <template v-for="item in timelines">
-                    <timeline-row :item="item" :key="item.timeline.toString()"></timeline-row>
+                    <timeline-row :item="item" :key="JSON.stringify(item)"></timeline-row>
                 </template>
             </table>
             <p>注：蓝色方块为技能buff的持续时间；ctrl+鼠标滚轮可以缩放视图大小。</p>
@@ -157,7 +154,7 @@
             <a href="https://www.pcrdfans.com/tools/timeline" target="_blank">时间轴计算器(测试版)_公主连结Re:dive Fan Club</a>
         </p>
         
-        <p>Version: 20.7.9.8</p>
+        <p>Version: 20.7.9.11</p>
 
         <p>
             更新日志：
@@ -190,7 +187,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
-<script src="components/selected-chara-skills-component.js"></script>
 <script src="components/add-skill-and-time-component.js"></script>
 <script src="components/timeline-row-component.js"></script>
 
