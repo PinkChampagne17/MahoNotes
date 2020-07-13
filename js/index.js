@@ -1,6 +1,3 @@
-const IS_DEVELOPMENT = false
-const TIMELINE_AUTOSAVE_LOCALSTORAGE_KEY = 'pc17-clan-battle-timeline-autosave'
-
 var app = new Vue({
     el: '#app',
     data: {
@@ -8,7 +5,7 @@ var app = new Vue({
         selectedCharas: [],
         timeline: [],
         result: [],
-        thIsTime: true,
+        timesRowDispIsTime: true,
         charaIconsUrlBase: './static/img/charaicons'
     },
     provide: function () {
@@ -17,12 +14,6 @@ var app = new Vue({
         }
     },
     mounted: function() {
-        if (IS_DEVELOPMENT) {
-            let autosave = JSON.parse(localStorage.getItem(TIMELINE_AUTOSAVE_LOCALSTORAGE_KEY))
-            this.selectedCharas = autosave.selectedCharas
-            this.timeline = autosave.timeline
-        }
-
         this.charas = CHARAS
         this.charas.forEach(c => c.imgSrc = `${this.charaIconsUrlBase}/${c.name}.webp`)
         this.charas.sort((a, b) => a.location - b.location)
@@ -47,16 +38,6 @@ var app = new Vue({
         charaIsSelected: function(chara) {
             return this.selectedCharas.includes(chara)
         },
-        getTh: function() {
-            let times = [...Array(90)].map((v, k) => k + 1).reverse();
-            
-            if (this.thIsTime) {
-                return times.map(v => this.useTimeToString({ minute: parseInt(v / 60), second: v % 60 }))
-            }
-            else {
-                return times.map(v => v < 10 ? '0' + v : v)
-            }
-        },
         clear: function() {
             this.clearArray(this.selectedCharas)
             this.clearArray(this.timeline)
@@ -71,13 +52,6 @@ var app = new Vue({
     },
     watch: {
         timeline: function() {
-            if (IS_DEVELOPMENT) {
-                localStorage.setItem(TIMELINE_AUTOSAVE_LOCALSTORAGE_KEY, JSON.stringify({
-                    selectedCharas: this.selectedCharas,
-                    timeline: this.timeline
-                }))
-            }
-
             this.clearArray(this.result)
 
             let skillNames = [...new Set(this.timeline.map(item => item.name))]
@@ -92,6 +66,18 @@ var app = new Vue({
 
                 this.result.push({ chara, skillName, time, timeline })
             })
+        }
+    },
+    computed: {
+        timesRow: function() {
+            let times = [...Array(90)].map((v, k) => k + 1).reverse();
+            
+            if (this.timesRowDispIsTime) {
+                return times.map(v => this.useTimeToString({ minute: parseInt(v / 60), second: v % 60 }))
+            }
+            else {
+                return times.map(v => v < 10 ? '0' + v : v)
+            }
         }
     }
 })
