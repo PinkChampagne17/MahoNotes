@@ -47,7 +47,7 @@ var app = new Vue({
             array.splice(0, array.length);
         },
         useTimeToString: function({minute, second}) {
-            return `${minute}:${second < 10 ? '0' + second : second}` 
+            return `${minute}:${second < 10 ? `0${second}` : second}` 
         }
     },
     watch: {
@@ -70,13 +70,13 @@ var app = new Vue({
     },
     computed: {
         timesRow: function() {
-            let times = [...Array(90)].map((v, k) => k + 1).reverse();
+            let nums = [...Array(90)].map((v, k) => k + 1).reverse();
             
             if (this.timesRowDispIsTime) {
-                return times.map(v => this.useTimeToString({ minute: parseInt(v / 60), second: v % 60 }))
+                return nums.map(v => this.useTimeToString({ minute: parseInt(v / 60), second: v % 60 }))
             }
             else {
-                return times.map(v => v < 10 ? '0' + v : v)
+                return nums.map(v => v < 10 ? `0${v}` : v)
             }
         }
     }

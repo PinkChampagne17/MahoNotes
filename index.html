@@ -27,7 +27,7 @@
                     :class="{ 'selected-chara-icon': selectedCharas.includes(chara) }"
                     @click="selectChara(chara)"
                 >
-                <hr v-if="['静流', '依里'].some(c => c == chara.name)">
+                <hr v-if="['静流', '依里'].includes(chara.name)">
             </template>
         </div>
 
