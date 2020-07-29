@@ -575,11 +575,11 @@ const CHARAS = [
         ]
     },
     {
-        "name": "紡希",
+        "name": "纺希",
         "location": 195,
         "skills": [
             {
-                "name": "不幸的束縛",
+                "name": "致死束缚",
                 "time": 2.5
             }
         ]
@@ -589,12 +589,36 @@ const CHARAS = [
         "location": 235,
         "skills": [
             {
-                "name": "公主浪花飛濺",
-                "time": 1
-            },
-            {
                 "name": "點心時間",
                 "time": 12
+            },
+            {
+                "name": "公主浪花飛濺",
+                "time": 1
+            }
+        ]
+    },
+    {
+        "name": "鈴莓（夏日）",
+        "location": 775,
+        "skills": [
+            {
+                "name": "熱帶假期",
+                "time": 1
+            }
+        ]
+    },
+    {
+        "name": "凱留（夏日）",
+        "location": 780,
+        "skills": [
+            {
+                "name": "螺旋海浪",
+                "time": 12
+            },
+            {
+                "name": "憤怒泳圈亂擲",
+                "time": 1
             }
         ]
     }

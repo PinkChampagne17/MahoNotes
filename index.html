@@ -97,9 +97,9 @@
                         <td>
                             <img
                                 :src="item.chara.imgSrc"
+                                :alt="item.chara.name"
                                 width="30"
                                 height="30"
-                                :alt="item.chara.name"
                             >
                             {{ item.chara.name }}
                         </td>
@@ -154,16 +154,14 @@
             <a href="https://www.pcrdfans.com/tools/timeline" target="_blank">时间轴计算器(测试版)_公主连结Re:dive Fan Club</a>
         </p>
         
-        <p>Version: 20.7.9.11</p>
+        <p>Version: 20.7.29.0</p>
 
         <p>
             更新日志：
             <br>
-            v20.7.9.x
+            1.新增角色“鈴莓（夏日）”、“凱留（夏日）”。
             <br>
-            1.新增角色“伊莉亚”、“紡希”、“貪吃佩可（夏日）”
-            <br>
-            2.选择角色时，角色已经通过站位来进行分类了
+            2.添加站点访问统计。
         </p>
 
         <p>
@@ -181,11 +179,15 @@
             Powered by Vue.js & Bootstrap v4 on GitHub Pages
         </p>
 
-        <p>本网站使用的游戏图像的版权，商标权和其他知识产权属于原内容提供者(bilibili, Cygames)。</p>
+        <p>本网站使用的游戏图像的版权，商标权和其他知识产权属于原内容提供者(bilibili, So-net Taiwan, Cygames)。</p>
+
+        <a href="https://info.flagcounter.com/lJga">
+            <img src="https://s01.flagcounter.com/countxl/lJga/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_1/pageviews_1/flags_0/percent_0/" alt="Flag Counter" border="0">
+        </a>
     </div>
 </body>
 
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
 
 <script src="components/add-skill-and-time-component.js"></script>
 <script src="components/timeline-row-component.js"></script>
