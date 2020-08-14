@@ -1,5 +1,5 @@
 Vue.component('add-skill-and-time', {
-    props: ['skill', 'chara'],
+    props : ['skill', 'chara'],
     inject: ['addedSkillsAndTimes'],
     data: () => ({
         minute: 1,
@@ -32,8 +32,8 @@ Vue.component('add-skill-and-time', {
 
             this.addedSkillsAndTimes.push({
                 ...this.skill,
-                chara: this.chara,
-                useTime: {
+                chara   : this.chara,
+                useTime : {
                     minute: parseFloat(this.minute),
                     second: parseFloat(this.second)
                 }

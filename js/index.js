@@ -1,12 +1,12 @@
 var app = new Vue({
     el: '#app',
     data: {
-        charas: [],
-        selectedCharas: [],
-        addedSkillsAndTimes: [],
-        timelines: [],
-        timesRowDispIsTime: true,
-        charaIconsUrlBase: './static/img/charaicons'
+        charas              : [],
+        selectedCharas      : [],
+        addedSkillsAndTimes : [],
+        timelines           : [],
+        timesRowDispIsTime  : true,
+        charaIconsUrlBase   : './static/img/charaicons'
     },
     provide: function () {
         return {
@@ -39,14 +39,11 @@ var app = new Vue({
             return this.selectedCharas.includes(chara)
         },
         clear: function() {
-            this.clearArray(this.selectedCharas)
-            this.clearArray(this.addedSkillsAndTimes)
-            this.clearArray(this.timelines)
+            clearArray(this.selectedCharas)
+            clearArray(this.addedSkillsAndTimes)
+            clearArray(this.timelines)
         },
-        clearArray: function(array) {
-            array.splice(0, array.length);
-        },
-        useTimeToString: function({minute, second}) {
+        useTimeToString: function({ minute, second }) {
             return `${minute}:${second < 10 ? `0${second}` : second}` 
         }
     },
@@ -59,18 +56,18 @@ var app = new Vue({
             skillNames.forEach(n => {
                 let t = this.addedSkillsAndTimes.filter(item => item.name == n)
 
-                let chara       = t[0].chara
-                let skillName   = t[0].name
-                let time        = t[0].time
-                let timeline    = t.map(({ useTime }) => useTime.minute * 60 + useTime.second)
-
-                this.timelines.push({ chara, skillName, time, timeline })
+                this.timelines.push({
+                    chara    : t[0].chara,
+                    skillName: t[0].name,
+                    time     : t[0].time,
+                    timeline : t.map(({ useTime }) => useTime.minute * 60 + useTime.second)
+                })
             })
         }
     },
     computed: {
         timesRow: function() {
-            let nums = [...Array(90)].map((v, k) => k + 1).reverse();
+            let nums = [...Array(90)].map((v, k) => k + 1).reverse()
             
             if (this.timesRowDispIsTime) {
                 return nums.map(v => this.useTimeToString({ minute: parseInt(v / 60), second: v % 60 }))
@@ -81,3 +78,7 @@ var app = new Vue({
         }
     }
 })
+
+function clearArray(array) {
+    array.splice(0, array.length)
+}
