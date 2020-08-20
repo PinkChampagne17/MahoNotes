@@ -1,9 +1,9 @@
-Vue.component('charas', {
-    inject: ['getCharasByPosition', 'selectedCharas', 'selectChara'],
-    props: ['position'],
+Vue.component('chara-list', {
+    inject: ['selectedCharas', 'selectChara'],
+    props: ['charas'],
     template:`
         <div style="margin-top: 5px;">
-            <template v-for="(chara, index) in getCharasByPosition(position)">
+            <template v-for="(chara, index) in charas">
                 <img 
                     :key="index"
                     :src="chara.imgSrc"

@@ -1,23 +1,22 @@
 var app = new Vue({
     el: '#app',
     data: {
-        charas              : [],
-        selectedCharas      : [],
-        addedSkillsAndTimes : [],
-        timelines           : [],
-        timesRowDispIsTime  : true,
-        charaIconsUrlBase   : './static/img/charaicons',
+        charas             : CHARAS,
+        selectedCharas     : [],
+        addedSkillsAndTimes: [],
+        timelines          : [],
+        timesRowDispIsTime : true,
+        charaIconsUrlBase  : './static/img/charaicons',
     },
     provide: function () {
         return {
             selectChara        : this.selectChara,
             selectedCharas     : this.selectedCharas,
-            getCharasByPosition: this.getCharasByPosition,
+            getCharas          : this.getCharas,
             addedSkillsAndTimes: this.addedSkillsAndTimes,
         }
     },
-    mounted: function() {
-        this.charas = CHARAS
+    created: function() {
         this.charas.sort((a, b) => a.location - b.location)
         this.charas.forEach(c => c.imgSrc = `${this.charaIconsUrlBase}/${c.name}.webp`)
     },
@@ -52,7 +51,7 @@ var app = new Vue({
             }
             return `${minute}:${second}`
         },
-        getCharasByPosition: function(position) {
+        getCharas: function({ position }) {
             let min = 0
             let max = 999
 
