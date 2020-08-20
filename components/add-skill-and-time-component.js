@@ -32,8 +32,8 @@ Vue.component('add-skill-and-time', {
 
             this.addedSkillsAndTimes.push({
                 ...this.skill,
-                chara   : this.chara,
-                useTime : {
+                chara  : this.chara,
+                useTime: {
                     minute: parseFloat(this.minute),
                     second: parseFloat(this.second)
                 }

@@ -585,39 +585,83 @@ const CHARAS = [
         ]
     },
     {
-        "name": "貪吃佩可（夏日）",
+        "name": "佩可莉姆（夏日）",
         "location": 235,
         "skills": [
             {
-                "name": "點心時間",
+                "name": "甜点时间",
                 "time": 12
             },
             {
-                "name": "公主浪花飛濺",
+                "name": "公主浪花飞溅",
                 "time": 1
             }
         ]
     },
     {
-        "name": "鈴莓（夏日）",
+        "name": "铃莓（夏日）",
         "location": 775,
         "skills": [
             {
-                "name": "熱帶假期",
+                "name": "热带假期",
                 "time": 1
             }
         ]
     },
     {
-        "name": "凱留（夏日）",
+        "name": "凯露（夏日）",
         "location": 780,
         "skills": [
             {
-                "name": "螺旋海浪",
+                "name": "海浪旋涡",
                 "time": 12
             },
             {
-                "name": "憤怒泳圈亂擲",
+                "name": "狂掷泳圈",
+                "time": 1
+            }
+        ]
+    },
+    {
+        "name": "美冬（夏日）",
+        "location": 495,
+        "skills": [
+            {
+                "name": "利維坦之槍",
+                "time": 18
+            }
+        ]
+    },
+    {
+        "name": "珠希（夏日）",
+        "location": 225,
+        "skills": [
+            {
+                "name": "破冰",
+                "time": 12
+            },
+            {
+                "name": "猫猫夏日狂欢",
+                "time": 1
+            }
+        ]
+    },
+    {
+        "name": "智",
+        "location": 220,
+        "skills": [
+            {
+                "name": "御久间流奥义·阿修罗",
+                "time": 1
+            }
+        ]
+    },
+    {
+        "name": "茉莉",
+        "location": 185,
+        "skills": [
+            {
+                "name": "虎之英雄轰炸",
                 "time": 1
             }
         ]

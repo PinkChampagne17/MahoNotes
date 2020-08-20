@@ -6,17 +6,20 @@ var app = new Vue({
         addedSkillsAndTimes : [],
         timelines           : [],
         timesRowDispIsTime  : true,
-        charaIconsUrlBase   : './static/img/charaicons'
+        charaIconsUrlBase   : './static/img/charaicons',
     },
     provide: function () {
         return {
-            addedSkillsAndTimes: this.addedSkillsAndTimes
+            selectChara        : this.selectChara,
+            selectedCharas     : this.selectedCharas,
+            getCharasByPosition: this.getCharasByPosition,
+            addedSkillsAndTimes: this.addedSkillsAndTimes,
         }
     },
     mounted: function() {
         this.charas = CHARAS
-        this.charas.forEach(c => c.imgSrc = `${this.charaIconsUrlBase}/${c.name}.webp`)
         this.charas.sort((a, b) => a.location - b.location)
+        this.charas.forEach(c => c.imgSrc = `${this.charaIconsUrlBase}/${c.name}.webp`)
     },
     methods: {
         selectChara: function(chara) {
@@ -44,12 +47,36 @@ var app = new Vue({
             clearArray(this.timelines)
         },
         useTimeToString: function({ minute, second }) {
-            return `${minute}:${second < 10 ? `0${second}` : second}` 
-        }
+            if (second < 10) {
+                second = `0${second}`
+            }
+            return `${minute}:${second}`
+        },
+        getCharasByPosition: function(position) {
+            let min = 0
+            let max = 999
+
+            switch (position) {
+                case "前卫": 
+                    max = 295
+                    break
+
+                case "中卫": 
+                    min = 295
+                    max = 590
+                    break
+
+                case "后卫":
+                    min = 590
+                    break
+            }
+            
+            return this.charas.filter(c => min < c.location && c.location <= max )
+        },
     },
     watch: {
         addedSkillsAndTimes: function() {
-            this.clearArray(this.timelines)
+            clearArray(this.timelines)
 
             let skillNames = [...new Set(this.addedSkillsAndTimes.map(item => item.name))]
             
@@ -70,7 +97,10 @@ var app = new Vue({
             let nums = [...Array(90)].map((v, k) => k + 1).reverse()
             
             if (this.timesRowDispIsTime) {
-                return nums.map(v => this.useTimeToString({ minute: parseInt(v / 60), second: v % 60 }))
+                return nums.map(v => this.useTimeToString({
+                    minute: parseInt(v / 60),
+                    second: v % 60
+                }))
             }
             else {
                 return nums.map(v => v < 10 ? `0${v}` : v)
