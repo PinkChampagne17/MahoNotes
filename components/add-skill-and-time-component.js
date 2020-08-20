@@ -29,21 +29,9 @@ Vue.component('add-skill-and-time', {
                 alert('添加的时间必须在0:01至1:30之间')
                 return
             }
-
-            this.addedSkillsAndTimes.push({
-                ...this.skill,
-                chara  : this.chara,
-                useTime: {
-                    minute: parseFloat(this.minute),
-                    second: parseFloat(this.second)
-                }
-            })
+            this.addedSkillsAndTimes.push(new AddedSkillAndTime(this.chara, this.skill, this.minute, this.second))
             
-            this.addedSkillsAndTimes.sort((a, b)=> {
-                let x = a.useTime
-                let y = b.useTime
-                return (y.minute * 60 + y.second) - (x.minute * 60 + x.second)
-            })
+            this.addedSkillsAndTimes.sort((a, b) => b.useTime.toTotalSecond(true) - a.useTime.toTotalSecond(true))
         }
     },
     template: `

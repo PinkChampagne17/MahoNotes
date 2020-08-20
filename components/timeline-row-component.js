@@ -4,7 +4,7 @@ Vue.component('timeline-row', {
         timeArray: [...Array(90)].map(value => false)
     }),
     mounted: function() {
-        this.item.timeline.forEach(t => {
+        this.item.useTimes.forEach(t => {
             for (let i = t - 1; i >= t - this.item.time; i--) {
                 if (i >= 0) {
                     this.timeArray[i] = true

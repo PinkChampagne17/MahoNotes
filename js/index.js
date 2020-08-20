@@ -1,12 +1,12 @@
 var app = new Vue({
     el: '#app',
     data: {
-        charas             : CHARAS,
+        charas             : [],
         selectedCharas     : [],
         addedSkillsAndTimes: [],
         timelines          : [],
         timesRowDispIsTime : true,
-        charaIconsUrlBase  : './static/img/charaicons',
+        charaIconsUrlBase  : CHARA_ICONS_URL_BASE,
     },
     provide: function () {
         return {
@@ -17,8 +17,10 @@ var app = new Vue({
         }
     },
     created: function() {
-        this.charas.sort((a, b) => a.location - b.location)
-        this.charas.forEach(c => c.imgSrc = `${this.charaIconsUrlBase}/${c.name}.webp`)
+        this.charas = CHARAS.map(c => new Chara(c))
+                            .sort((a, b) => a.location - b.location)
+
+        
     },
     methods: {
         selectChara: function(chara) {
@@ -44,12 +46,6 @@ var app = new Vue({
             clearArray(this.selectedCharas)
             clearArray(this.addedSkillsAndTimes)
             clearArray(this.timelines)
-        },
-        useTimeToString: function({ minute, second }) {
-            if (second < 10) {
-                second = `0${second}`
-            }
-            return `${minute}:${second}`
         },
         getCharas: function({ position }) {
             let min = 0
@@ -79,35 +75,28 @@ var app = new Vue({
 
             let skillNames = [...new Set(this.addedSkillsAndTimes.map(item => item.name))]
             
-            skillNames.forEach(n => {
-                let t = this.addedSkillsAndTimes.filter(item => item.name == n)
+            skillNames.forEach(skillName => {
+                let t        = this.addedSkillsAndTimes.filter(item => item.name == skillName)
 
-                this.timelines.push({
-                    chara    : t[0].chara,
-                    skillName: t[0].name,
-                    time     : t[0].time,
-                    timeline : t.map(({ useTime }) => useTime.minute * 60 + useTime.second)
-                })
+                let chara    = t[0].chara
+                let name     = t[0].name
+                let time     = t[0].time
+                let useTimes = t.map(({ useTime }) => useTime.toTotalSecond(true))
+
+                this.timelines.push(new Timeline(chara, name, time, useTimes))
             })
         }
     },
     computed: {
         timesRow: function() {
-            let nums = [...Array(90)].map((v, k) => k + 1).reverse()
+            let nums = [...Array(90)].map((v, k) => new UseTime(k + 1)).reverse()
             
             if (this.timesRowDispIsTime) {
-                return nums.map(v => this.useTimeToString({
-                    minute: parseInt(v / 60),
-                    second: v % 60
-                }))
+                return nums.map(t => t.toString())
             }
             else {
-                return nums.map(v => v < 10 ? `0${v}` : v)
+                return nums.map(t => t.toTotalSecond())
             }
         }
     }
 })
-
-function clearArray(array) {
-    array.splice(0, array.length)
-}

@@ -1,0 +1,1 @@
+const CHARA_ICONS_URL_BASE = './static/img/charaicons'
