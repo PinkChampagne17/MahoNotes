@@ -19,8 +19,6 @@ var app = new Vue({
     created: function() {
         this.charas = CHARAS.map(c => new Chara(c))
                             .sort((a, b) => a.location - b.location)
-
-        
     },
     methods: {
         selectChara: function(chara) {
@@ -43,15 +41,13 @@ var app = new Vue({
             return this.selectedCharas.includes(chara)
         },
         clear: function() {
-            clearArray(this.selectedCharas)
-            clearArray(this.addedSkillsAndTimes)
-            clearArray(this.timelines)
+            clearArrays(this.selectedCharas, this.addedSkillsAndTimes, this.timelines)
         },
-        getCharas: function({ position }) {
+        getCharas: function(parameters = { position: "未设置" }) {
             let min = 0
             let max = 999
 
-            switch (position) {
+            switch (parameters.position) {
                 case "前卫": 
                     max = 295
                     break
@@ -65,13 +61,12 @@ var app = new Vue({
                     min = 590
                     break
             }
-            
             return this.charas.filter(c => min < c.location && c.location <= max )
         },
     },
     watch: {
         addedSkillsAndTimes: function() {
-            clearArray(this.timelines)
+            clearArrays(this.timelines)
 
             let skillNames = [...new Set(this.addedSkillsAndTimes.map(item => item.name))]
             
@@ -89,7 +84,8 @@ var app = new Vue({
     },
     computed: {
         timesRow: function() {
-            let nums = [...Array(90)].map((v, k) => new UseTime(k + 1)).reverse()
+            let nums = [...Array(90)].map((v, k) => new UseTime(k + 1))
+                                     .reverse()
             
             if (this.timesRowDispIsTime) {
                 return nums.map(t => t.toString())

@@ -13,7 +13,7 @@ class UseTime {
             this.minute = parseFloat(time.minute) 
             this.second = parseFloat(time.second)
         }
-        else {
+        if (typeof time == "number") {
             this.minute = parseInt(time / 60)
             this.second = parseInt(time % 60)
         }
@@ -34,7 +34,7 @@ class UseTime {
         if (totalSecond < 10) {
             totalSecond = `0${totalSecond}`
         }
-        return totalSecond + ""
+        return `${totalSecond}`
     }
 }
 
@@ -49,9 +49,9 @@ class AddedSkillAndTime {
 
 class Timeline {
     constructor(chara, skillName, time, useTimes) {
-        this.chara = chara
+        this.chara     = chara
         this.skillName = skillName
-        this.time = time
-        this.useTimes = useTimes
+        this.time      = time
+        this.useTimes  = useTimes
     }
 }
