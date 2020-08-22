@@ -19,6 +19,13 @@
     width: 15px;
 }
 
+.tr-enter-active, .tr-leave-active {
+    transition: opacity .5s;
+}
+.tr-enter, .tr-leave-to {
+    opacity: 0;
+}
+
 table {
     text-align: center;
 }

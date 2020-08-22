@@ -1,14 +1,12 @@
 Vue.component("charas-collapse", {
   inject: ['getCharas'],
-  data: () => {
-    return {
+  data: () => ({
       activeNames : ["1", "2", "3"],
       frontCharas : [],
       middleCharas: [],
       backCharas  : [],
-    }
-  },
-  created: function() {
+  }),
+  created() {
     this.frontCharas  = this.getCharas({ position: "前卫" })
     this.middleCharas = this.getCharas({ position: "中卫" })
     this.backCharas   = this.getCharas({ position: "后卫" })

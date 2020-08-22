@@ -1,5 +1,5 @@
 Vue.component('chara-list', {
-    inject: ['selectedCharas', 'selectChara'],
+    inject: ['selectChara', 'charaIsSelected'],
     props: ['charas'],
     template:`
         <div style="margin-top: 5px;">
@@ -9,7 +9,7 @@ Vue.component('chara-list', {
                     :src="chara.imgSrc"
                     :title="chara.name"
                     class="chara-icon"
-                    :class="{ 'selected-chara-icon': selectedCharas.includes(chara) }"
+                    :class="{ 'selected-chara-icon': charaIsSelected(chara) }"
                     @click="selectChara(chara)"
                 >
             </template>

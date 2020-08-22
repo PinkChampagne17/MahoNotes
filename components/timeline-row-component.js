@@ -3,7 +3,7 @@ Vue.component('timeline-row', {
     data: () => ({
         timeArray: [...Array(90)].map(value => false)
     }),
-    mounted: function() {
+    mounted() {
         this.item.useTimes.forEach(t => {
             for (let i = t - 1; i >= t - this.item.time; i--) {
                 if (i >= 0) {

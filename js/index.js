@@ -1,27 +1,28 @@
+// Vue.config.devtools = true
+
 var app = new Vue({
     el: '#app',
     data: {
         charas             : [],
         selectedCharas     : [],
         addedSkillsAndTimes: [],
-        timelines          : [],
         timesRowDispIsTime : true,
         charaIconsUrlBase  : CHARA_ICONS_URL_BASE,
     },
-    provide: function () {
+    provide() {
         return {
-            selectChara        : this.selectChara,
-            selectedCharas     : this.selectedCharas,
             getCharas          : this.getCharas,
+            selectChara        : this.selectChara,
+            charaIsSelected    : this.charaIsSelected,
             addedSkillsAndTimes: this.addedSkillsAndTimes,
         }
     },
-    created: function() {
+    created() {
         this.charas = CHARAS.map(c => new Chara(c))
                             .sort((a, b) => a.location - b.location)
     },
     methods: {
-        selectChara: function(chara) {
+        selectChara(chara) {
             if (this.charaIsSelected(chara)) {
                 this.deselectChara(chara)
             }
@@ -33,21 +34,30 @@ var app = new Vue({
                 this.selectedCharas.sort((a, b) => b.location - a.location)
             }
         },
-        deselectChara: function(chara) {
+        deselectChara(chara) {
             let index = this.selectedCharas.indexOf(chara)
             this.selectedCharas.splice(index, 1)
         },
-        charaIsSelected: function(chara) {
+        charaIsSelected(chara) {
             return this.selectedCharas.includes(chara)
         },
-        clear: function() {
-            clearArrays(this.selectedCharas, this.addedSkillsAndTimes, this.timelines)
+        clear() {
+            this.$confirm('确定清空所有内容?', '提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning',
+                center: true,
+            }).then(() => 
+                clearArrays(this.selectedCharas, this.addedSkillsAndTimes, this.timelines)
+            )
         },
-        getCharas: function(parameters = { position: "未设置" }) {
+        getCharas({ position }) {
             let min = 0
             let max = 999
 
-            switch (parameters.position) {
+            position = position || "未设置"
+
+            switch (position) {
                 case "前卫": 
                     max = 295
                     break
@@ -65,12 +75,17 @@ var app = new Vue({
         },
     },
     watch: {
-        addedSkillsAndTimes: function() {
-            clearArrays(this.timelines)
-
+        selectedCharas() {
+            if (this.selectedCharas == 0) {
+                clearArrays(this.addedSkillsAndTimes)
+            }
+        }
+    },
+    computed: {
+        timelines() {
             let skillNames = [...new Set(this.addedSkillsAndTimes.map(item => item.name))]
             
-            skillNames.forEach(skillName => {
+            return skillNames.map(skillName => {
                 let t        = this.addedSkillsAndTimes.filter(item => item.name == skillName)
 
                 let chara    = t[0].chara
@@ -78,12 +93,10 @@ var app = new Vue({
                 let time     = t[0].time
                 let useTimes = t.map(({ useTime }) => useTime.toTotalSecond(true))
 
-                this.timelines.push(new Timeline(chara, name, time, useTimes))
+                return new Timeline(chara, name, time, useTimes)
             })
-        }
-    },
-    computed: {
-        timesRow: function() {
+        },
+        timesRow() {
             let nums = [...Array(90)].map((v, k) => new UseTime(k + 1))
                                      .reverse()
             

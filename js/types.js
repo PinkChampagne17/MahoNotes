@@ -30,11 +30,12 @@ class UseTime {
         if (targetTypeIsNumber) {
             return totalSecond
         }
-
-        if (totalSecond < 10) {
-            totalSecond = `0${totalSecond}`
+        else if (totalSecond < 10) {
+            return  '0' + totalSecond
         }
-        return `${totalSecond}`
+        else {
+            return `${totalSecond}`
+        }
     }
 }
 
