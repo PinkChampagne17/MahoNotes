@@ -22,7 +22,7 @@
             <p>正在获取 https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js ...</p>
             <p>正在获取 https://cdn.jsdelivr.net/npm/element-ui@2.13.2/lib/index.js ...</p>
         </div>
-
+        
         <div style="display: none;" v-show="true">
             
             <nav class="navbar navbar-dark bg-dark">
@@ -36,7 +36,7 @@
             </nav>
             <div style="margin-top: 5px;">
                 <img
-                    v-for="(chara, index) in selectedCharas"
+                    v-for="(chara, index) in $store.state.selectedCharas"
                     :key="index"
                     :src="chara.imgSrc"
                     :title="chara.name"
@@ -45,45 +45,47 @@
                     style="opacity: 1;"
                 >
                 <img
-                    v-for="n in (5 - selectedCharas.length)"
+                    v-for="n in (5 - $store.state.selectedCharas.length)"
                     :src="charaIconsUrlBase + '/unknown.jpg'"
                     class="chara-icon"
                 >
             </div>
 
             <transition name="tr">
-                <div v-show="selectedCharas.length != 0">
+                <div v-show="$store.state.selectedCharas.length != 0">
                     <nav class="navbar navbar-dark bg-dark">
                         <span class="navbar-brand mb-0 h1">添加技能施放时间</span>
                     </nav>
-                    <div
-                        v-for="(chara, index) in selectedCharas"
-                        :chara="chara"
-                        :key="index"
-                    >
-                        <template v-if="chara.skills">
-                            <nav class="navbar navbar-light bg-light">
-                                <a class="navbar-brand" href="#">
-                                    <img
-                                        :src="chara.imgSrc" width="30" height="30"
-                                        loading="lazy"
-                                    >
-                                    {{ chara.name }}
-                                </a>
-                            </nav>
-                            <add-skill-and-time
-                                v-for="(skill, index) in chara.skills"
-                                :key="index"
-                                :skill="skill"
-                                :chara="chara"
-                            ></add-skill-and-time>
-                        </template>
-                    </div>
+                    <transition-group name="tr">
+                        <div
+                            v-for="(chara, index) in $store.state.selectedCharas"
+                            :chara="chara"
+                            :key="index"
+                        >
+                            <template v-if="chara.skills">
+                                <nav class="navbar navbar-light bg-light">
+                                    <a class="navbar-brand" href="#">
+                                        <img
+                                            :src="chara.imgSrc" width="30" height="30"
+                                            loading="lazy"
+                                        >
+                                        {{ chara.name }}
+                                    </a>
+                                </nav>
+                                <add-skill-and-time
+                                    v-for="(skill, index) in chara.skills"
+                                    :key="index"
+                                    :skill="skill"
+                                    :chara="chara"
+                                ></add-skill-and-time>
+                            </template>
+                        </div>
+                    </transition-group>
                 </div>
             </transition>
             <br>
             <transition name="tr">
-                <div v-show="addedSkillsAndTimes.length != 0">
+                <div v-show="$store.state.addedSkillsAndTimes.length != 0">
                     <b>已添加的技能施放时间：</b>
                     <table border="1">
                         <tr>
@@ -92,7 +94,7 @@
                             <th style="min-width: 95px;">时间</th>
                             <th style="min-width: 95px;"></th>
                         </tr>
-                        <template v-for="(item, index) in addedSkillsAndTimes">
+                        <template v-for="(item, index) in $store.state.addedSkillsAndTimes">
                             <tr :key="index">
                                 <td>
                                     <img
@@ -110,10 +112,11 @@
                                         class="btn btn-danger"
                                         type="button"
                                         value="删除"
-                                        @click="addedSkillsAndTimes.splice(index, 1)"
-                                    >
+                                        @click="removeSkillAndTime(index)"
+                                        >
                                 </td>
                             </tr>
+                            </transition-group>
                         </template>
                     </table>
                     <br>
@@ -130,14 +133,12 @@
                         @click="clear()"
                     >
                     <br>
-                    <br>
-            
-                    <table border="1px" v-show="timelines.length != 0">
+                    <table border="1px" v-show="$store.getters.timelines.length != 0">
                         <tr>
                             <th style="min-width: 280px;">技能/时间</th>
-                            <th style="min-width: 35px;" v-for="item in timesRow">{{ item }}</th>
+                            <th style="min-width: 35px;" v-for="time in timesRow">{{ time }}</th>
                         </tr>
-                        <template v-for="item in timelines">
+                        <template v-for="item in $store.getters.timelines">
                             <timeline-row :item="item" :key="JSON.stringify(item)"></timeline-row>
                         </template>
                     </table>
@@ -145,7 +146,7 @@
                 </div>
             </transition>
             
-            <p>Version: 20.8.22.0</p>
+            <p>Version: 20.8.23.0</p>
 
             <p>
                 ©2020 真步笔记 Maho Notes
@@ -162,23 +163,25 @@
                 </a>
             </p>
 
-            <a href="https://info.flagcounter.com/lJga">
+            <!-- <a href="https://info.flagcounter.com/lJga">
                 <img src="https://s01.flagcounter.com/countxl/lJga/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_1/pageviews_1/flags_0/percent_0/" alt="Flag Counter" border="0">
-            </a>
+            </a> -->
         </div>
     </div>
 </body>
 
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/element-ui@2.13.2/lib/index.js"></script>
+<script src="https://unpkg.com/vuex@2.0.0/dist/vuex.js"></script>
 
-<script src="components/charas-collapse-component.js"></script>
-<script src="components/charas-component.js"></script>
-<script src="components/add-skill-and-time-component.js"></script>
-<script src="components/timeline-row-component.js"></script>
-
+<script src="js/functions.js"></script>
 <script src="js/consts.js"></script>
 <script src="js/types.js"></script>
-<script src="js/functions.js"></script>
+<script src="js/store.js"></script>
+
+<script src="components/charas-collapse-component.js"></script>
+<script src="components/charas-list-component.js"></script>
+<script src="components/add-skill-and-time-component.js"></script>
+<script src="components/timeline-row-component.js"></script>
 
 <script src="js/index.js"></script>

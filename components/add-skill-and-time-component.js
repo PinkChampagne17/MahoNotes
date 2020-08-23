@@ -1,6 +1,5 @@
 Vue.component('add-skill-and-time', {
     props : ['skill', 'chara'],
-    inject: ['addedSkillsAndTimes'],
     data: () => ({
         minute: 1,
         second: 30
@@ -29,9 +28,10 @@ Vue.component('add-skill-and-time', {
                 alert('添加的时间必须在0:01至1:30之间')
                 return
             }
-            this.addedSkillsAndTimes.push(new AddedSkillAndTime(this.chara, this.skill, this.minute, this.second))
+            this.$store.commit(ADD_SKILL_AND_TIME_MUTATION, new AddedSkillAndTime(this.chara, this.skill, this.minute, this.second))
+            // this.addedSkillsAndTimes.push()
             
-            this.addedSkillsAndTimes.sort((a, b) => b.useTime.toTotalSecond(true) - a.useTime.toTotalSecond(true))
+            // this.addedSkillsAndTimes.sort((a, b) => b.useTime.toTotalSecond(true) - a.useTime.toTotalSecond(true))
         }
     },
     template: `

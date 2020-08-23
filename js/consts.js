@@ -1,3 +1,4 @@
+const ENVIROMENT_IS_DEVELOPMENT = environmentIsDevelopment()
 const CHARA_ICONS_URL_BASE = './static/img/charaicons'
 
 const CHARAS = [

@@ -1,5 +1,4 @@
 Vue.component("charas-collapse", {
-  inject: ['getCharas'],
   data: () => ({
       activeNames : ["1", "2", "3"],
       frontCharas : [],
@@ -7,9 +6,9 @@ Vue.component("charas-collapse", {
       backCharas  : [],
   }),
   created() {
-    this.frontCharas  = this.getCharas({ position: "前卫" })
-    this.middleCharas = this.getCharas({ position: "中卫" })
-    this.backCharas   = this.getCharas({ position: "后卫" })
+    this.frontCharas  = this.$store.state.charas.filter(c => c.locationName == CHARA_LOCATION_FRONT)
+    this.middleCharas = this.$store.state.charas.filter(c => c.locationName == CHARA_LOCATION_MIDDLE)
+    this.backCharas   = this.$store.state.charas.filter(c => c.locationName == CHARA_LOCATION_BACK)
   },
   template: `
       <el-collapse v-model="activeNames">

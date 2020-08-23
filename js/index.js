@@ -1,7 +1,8 @@
-// Vue.config.devtools = true
+Vue.config.devtools = ENVIROMENT_IS_DEVELOPMENT
 
 var app = new Vue({
     el: '#app',
+    store,
     data: {
         charas             : [],
         selectedCharas     : [],
@@ -12,66 +13,53 @@ var app = new Vue({
     provide() {
         return {
             getCharas          : this.getCharas,
-            selectChara        : this.selectChara,
-            charaIsSelected    : this.charaIsSelected,
+            selectChara        : chara => this.$store.dispatch(SELECT_CHARA_MUTATION, chara),
+            charaIsSelected    : chara => this.$store.getters.charaIsSelected(chara),
             addedSkillsAndTimes: this.addedSkillsAndTimes,
         }
     },
     created() {
-        this.charas = CHARAS.map(c => new Chara(c))
-                            .sort((a, b) => a.location - b.location)
+        // this.$store.state.charas = CHARAS.map(c => new Chara(c))
+        //                     .sort((a, b) => a.location - b.location)
     },
     methods: {
         selectChara(chara) {
-            if (this.charaIsSelected(chara)) {
-                this.deselectChara(chara)
-            }
-            else if (this.selectedCharas.length == 5) {
-                alert("一个队伍最多5个角色")
-            }
-            else {
-                this.selectedCharas.push(chara)
-                this.selectedCharas.sort((a, b) => b.location - a.location)
-            }
+            this.$store.dispatch(SELECT_CHARA_MUTATION, chara)
+            // if (this.charaIsSelected(chara)) {
+            //     this.deselectChara(chara)
+            // }
+            // else if (this.selectedCharas.length == 5) {
+            //     this.$message({
+            //         center   : true,
+            //         showClose: true,
+            //         message  : '一个队伍最多放置5名角色',
+            //         type     : 'error',
+            //     })
+            // }
+            // else {
+            //     this.selectedCharas.push(chara)
+            //     this.selectedCharas.sort((a, b) => b.location - a.location)
+            // }
         },
         deselectChara(chara) {
             let index = this.selectedCharas.indexOf(chara)
             this.selectedCharas.splice(index, 1)
         },
         charaIsSelected(chara) {
-            return this.selectedCharas.includes(chara)
+            return this.$store.getters.charaIsSelected(chara)
+        },
+        removeSkillAndTime(index) {
+            this.$store.dispatch(REMOVE_SKILL_AND_TIME_ACTION, index)
         },
         clear() {
             this.$confirm('确定清空所有内容?', '提示', {
                 confirmButtonText: '确定',
-                cancelButtonText: '取消',
-                type: 'warning',
-                center: true,
+                cancelButtonText : '取消',
+                type             : 'warning',
+                center           : true,
             }).then(() => 
-                clearArrays(this.selectedCharas, this.addedSkillsAndTimes, this.timelines)
+                this.$store.commit(CLEAR_MUTATION)
             )
-        },
-        getCharas({ position }) {
-            let min = 0
-            let max = 999
-
-            position = position || "未设置"
-
-            switch (position) {
-                case "前卫": 
-                    max = 295
-                    break
-
-                case "中卫": 
-                    min = 295
-                    max = 590
-                    break
-
-                case "后卫":
-                    min = 590
-                    break
-            }
-            return this.charas.filter(c => min < c.location && c.location <= max )
         },
     },
     watch: {
