@@ -29,9 +29,6 @@ Vue.component('add-skill-and-time', {
                 return
             }
             this.$store.commit(ADD_SKILL_AND_TIME_MUTATION, new AddedSkillAndTime(this.chara, this.skill, this.minute, this.second))
-            // this.addedSkillsAndTimes.push()
-            
-            // this.addedSkillsAndTimes.sort((a, b) => b.useTime.toTotalSecond(true) - a.useTime.toTotalSecond(true))
         }
     },
     template: `

@@ -6,9 +6,10 @@ Vue.component("charas-collapse", {
       backCharas  : [],
   }),
   created() {
-    this.frontCharas  = this.$store.state.charas.filter(c => c.locationName == CHARA_LOCATION_FRONT)
-    this.middleCharas = this.$store.state.charas.filter(c => c.locationName == CHARA_LOCATION_MIDDLE)
-    this.backCharas   = this.$store.state.charas.filter(c => c.locationName == CHARA_LOCATION_BACK)
+    let charas        = this.$store.state.charas
+    this.frontCharas  = charas.filter(c => c.locationName == CHARA_LOCATION_FRONT)
+    this.middleCharas = charas.filter(c => c.locationName == CHARA_LOCATION_MIDDLE)
+    this.backCharas   = charas.filter(c => c.locationName == CHARA_LOCATION_BACK)
   },
   template: `
       <el-collapse v-model="activeNames">

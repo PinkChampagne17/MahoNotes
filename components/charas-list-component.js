@@ -1,8 +1,15 @@
 Vue.component('chara-list', {
-    inject: ['selectChara', 'charaIsSelected'],
     props: ['charas'],
+    methods: {
+        selectChara(chara) {
+            this.$store.commit(SELECT_CHARA_MUTATION, chara)
+        },
+        charaIsSelected(chara) {
+            return this.$store.getters.charaIsSelected(chara)
+        },
+    },
     template:`
-        <div style="margin-top: 5px;">
+        <div style="margin-top: 5px;" v-if="$store.getters.length != 0">
             <template v-for="(chara, index) in charas">
                 <img 
                     :key="index"
