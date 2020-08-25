@@ -602,6 +602,20 @@ const CHARAS = [
         ]
     },
     {
+        "name": "可可萝（夏日）",
+        "location": 535,
+        "skills": [
+            {
+                "name": "脐橙支援",
+                "time": 12
+            },
+            {
+                "name": "海洋治愈",
+                "time": 1
+            }
+        ]
+    },
+    {
         "name": "铃莓（夏日）",
         "location": 775,
         "skills": [
