@@ -1,4 +1,4 @@
-function environmentIsDevelopment(params) {
+function environmentIsDevelopment() {
     return localStorage.getItem("env") == "dev"
 }
 

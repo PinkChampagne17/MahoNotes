@@ -1,4 +1,4 @@
-# 真步笔记 MahoNotes
+# 真步笔记 Maho Notes
 一个简单的公主连结Re:Dive计轴器。
 
 ![GitHub](https://img.shields.io/github/license/PinkChampagne17/MahoNotes?style=flat-square)
@@ -15,17 +15,21 @@
 注：截图中蓝色的部分为buff的持续时间。
 
 ## 适用的游戏版本
-- [x] 国服 (bilibili)
+- [x] 国服　　 (bilibili Game)
+- [ ] 泰服　　 (Ini3 E-Lympic Games)
+- [ ] 韩服　　 (Kakao Games)
 - [ ] 港澳台服 (So-net Entertainment Taiwan)
-- [ ] 日服 (Cygames)
+- [ ] 日服　　 (Cygames)
 
 ## 支持语言
 - [x] 简体中文
+- [ ] English
+- [ ] ไทย
+- [ ] 한국어
 - [ ] 繁體中文
 - [ ] 日本語
-- [ ] English
 
-## 使用的第三方库
+## 第三方依赖
 - Vue.js
 - Bootstrap v4
 - Element
