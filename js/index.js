@@ -6,6 +6,7 @@ var app = new Vue({
     data: {
         timesRowDispIsTime : true,
         charaIconsUrlBase  : CHARA_ICONS_URL_BASE,
+        envIsDev           : ENVIROMENT_IS_DEVELOPMENT,
     },
     created() {
         this.$store.commit(INIT_CHARAS_MUTATION, getCharas())

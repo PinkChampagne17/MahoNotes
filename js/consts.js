@@ -1,5 +1,5 @@
-const ENVIROMENT_IS_DEVELOPMENT = environmentIsDevelopment()
-const CHARA_ICONS_URL_BASE = ENVIROMENT_IS_DEVELOPMENT ? './img/charaicons' : 'https://cdn.jsdelivr.net/gh/pinkchampagne17/MahoNotes/img/charaicons'
+const ENVIROMENT_IS_DEVELOPMENT = localStorage.getItem("env") == "dev"
+const CHARA_ICONS_URL_BASE      = ENVIROMENT_IS_DEVELOPMENT ? './img/charaicons' : 'https://cdn.jsdelivr.net/gh/pinkchampagne17/MahoNotes/img/charaicons'
 
 const CHARAS = [
     {

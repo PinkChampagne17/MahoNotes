@@ -149,14 +149,21 @@
                 </div>
             </transition>
             
-            <p>Version: 20.8.23.2</p>
+            <p>Version: 20.8.23.3</p>
 
             <p>
                 ©2020 真步笔记 Maho Notes
                 <br>
-                Powered by Vue.js & Bootstrap v4 & Element on GitHub Pages
+                Powered by
+                <a href="https://cn.vuejs.org/" target="_blank">Vue</a> &
+                <a href="https://getbootstrap.com/" target="_blank">Bootstrap v4</a> &
+                <a href="https://element.eleme.cn/#/zh-CN" target="_blank">Element</a> on
+                <a href="https://pages.github.com/" target="_blank">GitHub Pages</a> &
+                <a href="https://www.jsdelivr.com/" target="_blank">jsDelivr</a>
                 <br>
-                本网站使用的游戏图像的版权和其他知识产权属于原内容提供者(bilibili, So-net Taiwan, Cygames)。
+                本网站使用的游戏图像的版权和其他知识产权属于原内容提供者(<a href="https://game.bilibili.com" target="_blank">bilibili Game</a>,
+                <a href="https://www.so-net.net.tw/game" target="_blank">So-net Entertainment Taiwan</a>,
+                <a href="https://www.cygames.co.jp/" target="_blank">Cygames</a>)。
                 <br>
                 <a href="https://github.com/PinkChampagne17/MahoNotes" target="_blank">
                     <img alt="GitHub stars" src="https://img.shields.io/github/stars/PinkChampagne17/MahoNotes?style=social&lable=Repository">
@@ -166,7 +173,7 @@
                 </a>
             </p>
 
-            <a href="https://info.flagcounter.com/lJga">
+            <a href="https://info.flagcounter.com/lJga" v-if="!envIsDev">
                 <img src="https://s01.flagcounter.com/countxl/lJga/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_12/viewers_0/labels_1/pageviews_1/flags_0/percent_0/" alt="Flag Counter" border="0">
             </a>
         </div>
