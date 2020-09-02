@@ -1,10 +1,10 @@
-const ENVIROMENT_IS_DEVELOPMENT = localStorage.getItem("env") == "dev"
+const ENVIROMENT_IS_DEVELOPMENT = window.location.host != "pinkchampagne17.github.io"
 const CHARA_ICONS_URL_BASE      = ENVIROMENT_IS_DEVELOPMENT ? './img/charaicons' : 'https://cdn.jsdelivr.net/gh/pinkchampagne17/MahoNotes/img/charaicons'
 
 const CHARAS = [
     {
         "name": "真步",
-        "location": 795,
+        "position": 795,
         "skills": [
             {
                 "name": "童话庭院",
@@ -14,7 +14,7 @@ const CHARAS = [
     },
     {
         "name": "璃乃",
-        "location": 700,
+        "position": 700,
         "skills": [
             {
                 "name": "全神贯注",
@@ -28,7 +28,7 @@ const CHARAS = [
     },
     {
         "name": "望",
-        "location": 160,
+        "position": 160,
         "skills": [
             {
                 "name": "演出开始",
@@ -38,7 +38,7 @@ const CHARAS = [
     },
     {
         "name": "秋乃",
-        "location": 180,
+        "position": 180,
         "skills": [
             {
                 "name": "意气风发斩",
@@ -52,7 +52,7 @@ const CHARAS = [
     },
     {
         "name": "镜华",
-        "location": 810,
+        "position": 810,
         "skills": [
             {
                 "name": "魔力增幅",
@@ -66,7 +66,7 @@ const CHARAS = [
     },
     {
         "name": "真琴",
-        "location": 165,
+        "position": 165,
         "skills": [
             {
                 "name": "天狼噬斩",
@@ -80,7 +80,7 @@ const CHARAS = [
     },
     {
         "name": "纯",
-        "location": 135,
+        "position": 135,
         "skills": [
             {
                 "name": "护甲破坏",
@@ -94,7 +94,7 @@ const CHARAS = [
     },
     {
         "name": "莫妮卡",
-        "location": 410,
+        "position": 410,
         "skills": [
             {
                 "name": "紫电一闪",
@@ -104,7 +104,7 @@ const CHARAS = [
     },
     {
         "name": "亚里莎",
-        "location": 625,
+        "position": 625,
         "skills": [
             {
                 "name": "箭贯汝身！",
@@ -114,7 +114,7 @@ const CHARAS = [
     },
     {
         "name": "茜里",
-        "location": 570,
+        "position": 570,
         "skills": [
             {
                 "name": "甜蜜的恶魔声援",
@@ -128,7 +128,7 @@ const CHARAS = [
     },
     {
         "name": "雪",
-        "location": 805,
+        "position": 805,
         "skills": [
             {
                 "name": "拜倒在我的美貌之下吧",
@@ -138,7 +138,7 @@ const CHARAS = [
     },
     {
         "name": "美里",
-        "location": 735,
+        "position": 735,
         "skills": [
             {
                 "name": "神圣之力",
@@ -152,7 +152,7 @@ const CHARAS = [
     },
     {
         "name": "深月",
-        "location": 565,
+        "position": 565,
         "skills": [
             {
                 "name": "蔷薇领域",
@@ -166,7 +166,7 @@ const CHARAS = [
     },
     {
         "name": "香织",
-        "location": 145,
+        "position": 145,
         "skills": [
             {
                 "name": "琉球犬重拳出击",
@@ -176,7 +176,7 @@ const CHARAS = [
     },
     {
         "name": "栞",
-        "location": 710,
+        "position": 710,
         "skills": [
             {
                 "name": "附魔之箭",
@@ -186,7 +186,7 @@ const CHARAS = [
     },
     {
         "name": "莉玛",
-        "location": 105,
+        "position": 105,
         "skills": [
             {
                 "name": "毛绒绒挥击",
@@ -196,7 +196,7 @@ const CHARAS = [
     },
     {
         "name": "宫子",
-        "location": 125,
+        "position": 125,
         "skills": [
             {
                 "name": "把你变成布丁",
@@ -206,7 +206,7 @@ const CHARAS = [
     },
     {
         "name": "空花",
-        "location": 130,
+        "position": 130,
         "skills": [
             {
                 "name": "神魂颠倒",
@@ -216,7 +216,7 @@ const CHARAS = [
     },
     {
         "name": "佩可莉姆",
-        "location": 155,
+        "position": 155,
         "skills": [
             {
                 "name": "公主突袭",
@@ -226,7 +226,7 @@ const CHARAS = [
     },
     {
         "name": "日和莉",
-        "location": 200,
+        "position": 200,
         "skills": [
             {
                 "name": "猫咪组合拳",
@@ -240,7 +240,7 @@ const CHARAS = [
     },
     {
         "name": "未奏希",
-        "location": 205,
+        "position": 205,
         "skills": [
             {
                 "name": "水球",
@@ -254,7 +254,7 @@ const CHARAS = [
     },
     {
         "name": "绫音",
-        "location": 210,
+        "position": 210,
         "skills": [
             {
                 "name": "噗吉飓风击",
@@ -268,7 +268,7 @@ const CHARAS = [
     },
     {
         "name": "珠希",
-        "location": 215,
+        "position": 215,
         "skills": [
             {
                 "name": "猫猫决胜爪",
@@ -278,7 +278,7 @@ const CHARAS = [
     },
     {
         "name": "惠理子",
-        "location": 230,
+        "position": 230,
         "skills": [
             {
                 "name": "痴迷执念",
@@ -292,7 +292,7 @@ const CHARAS = [
     },
     {
         "name": "胡桃",
-        "location": 240,
+        "position": 240,
         "skills": [
             {
                 "name": "惊吓摇铃",
@@ -302,7 +302,7 @@ const CHARAS = [
     },
     {
         "name": "姬塔",
-        "location": 245,
+        "position": 245,
         "skills": [
             {
                 "name": "疾风剑雨",
@@ -312,7 +312,7 @@ const CHARAS = [
     },
     {
         "name": "怜",
-        "location": 250,
+        "position": 250,
         "skills": [
             {
                 "name": "斩刃风暴",
@@ -322,7 +322,7 @@ const CHARAS = [
     },
     {
         "name": "静流",
-        "location": 285,
+        "position": 285,
         "skills": [
             {
                 "name": "神圣突刺",
@@ -332,7 +332,7 @@ const CHARAS = [
     },
     {
         "name": "美美",
-        "location": 360,
+        "position": 360,
         "skills": [
             {
                 "name": "兔兔应援",
@@ -346,7 +346,7 @@ const CHARAS = [
     },
     {
         "name": "忍",
-        "location": 365,
+        "position": 365,
         "skills": [
             {
                 "name": "亡灵叙述者",
@@ -360,7 +360,7 @@ const CHARAS = [
     },
     {
         "name": "真阳",
-        "location": 395,
+        "position": 395,
         "skills": [
             {
                 "name": "肉叉斩击",
@@ -374,7 +374,7 @@ const CHARAS = [
     },
     {
         "name": "由加莉",
-        "location": 405,
+        "position": 405,
         "skills": [
             {
                 "name": "七重纱护",
@@ -384,7 +384,7 @@ const CHARAS = [
     },
     {
         "name": "妮侬",
-        "location": 415,
+        "position": 415,
         "skills": [
             {
                 "name": "忍术灼热地狱",
@@ -394,7 +394,7 @@ const CHARAS = [
     },
     {
         "name": "美冬",
-        "location": 420,
+        "position": 420,
         "skills": [
             {
                 "name": "飞跃枪闪",
@@ -404,7 +404,7 @@ const CHARAS = [
     },
     {
         "name": "咲恋",
-        "location": 430,
+        "position": 430,
         "skills": [
             {
                 "name": "凤凰之剑",
@@ -415,7 +415,7 @@ const CHARAS = [
     },
     {
         "name": "杏奈",
-        "location": 440,
+        "position": 440,
         "skills": [
             {
                 "name": "罗刹涅槃・极光终天冥坏破",
@@ -425,7 +425,7 @@ const CHARAS = [
     },
     {
         "name": "可可萝",
-        "location": 500,
+        "position": 500,
         "skills": [
             {
                 "name": "极光",
@@ -439,7 +439,7 @@ const CHARAS = [
     },
     {
         "name": "铃",
-        "location": 550,
+        "position": 550,
         "skills": [
             {
                 "name": "尝尝亲手烘焙的红豆包",
@@ -449,7 +449,7 @@ const CHARAS = [
     },
     {
         "name": "依里",
-        "location": 575,
+        "position": 575,
         "skills": [
             {
                 "name": "极限充能",
@@ -463,7 +463,7 @@ const CHARAS = [
     },
     {
         "name": "铃奈",
-        "location": 705,
+        "position": 705,
         "skills": [
             {
                 "name": "威力全开",
@@ -477,7 +477,7 @@ const CHARAS = [
     },
     {
         "name": "伊绪",
-        "location": 715,
+        "position": 715,
         "skills": [
             {
                 "name": "百魅惑心",
@@ -487,7 +487,7 @@ const CHARAS = [
     },
     {
         "name": "铃莓",
-        "location": 720,
+        "position": 720,
         "skills": [
             {
                 "name": "狂风气流卷",
@@ -501,7 +501,7 @@ const CHARAS = [
     },
     {
         "name": "凯露",
-        "location": 750,
+        "position": 750,
         "skills": [
             {
                 "name": "护甲消除",
@@ -515,7 +515,7 @@ const CHARAS = [
     },
     {
         "name": "初音",
-        "location": 755,
+        "position": 755,
         "skills": [
             {
                 "name": "闪耀☆流星",
@@ -525,7 +525,7 @@ const CHARAS = [
     },
     {
         "name": "美咲",
-        "location": 760,
+        "position": 760,
         "skills": [
             {
                 "name": "特洛伊之眼",
@@ -535,7 +535,7 @@ const CHARAS = [
     },
     {
         "name": "碧",
-        "location": 785,
+        "position": 785,
         "skills": [
             {
                 "name": "蔓藤旋舞",
@@ -545,7 +545,7 @@ const CHARAS = [
     },
     {
         "name": "千歌",
-        "location": 790,
+        "position": 790,
         "skills": [
             {
                 "name": "激励之歌",
@@ -559,7 +559,7 @@ const CHARAS = [
     },
     {
         "name": "优衣",
-        "location": 800,
+        "position": 800,
         "skills": [
             {
                 "name": "全体治疗",
@@ -569,7 +569,7 @@ const CHARAS = [
     },
     {
         "name": "伊莉亚",
-        "location": 425,
+        "position": 425,
         "skills": [
             {
                 "name": "朱色之噬",
@@ -579,7 +579,7 @@ const CHARAS = [
     },
     {
         "name": "纺希",
-        "location": 195,
+        "position": 195,
         "skills": [
             {
                 "name": "致死束缚",
@@ -589,7 +589,7 @@ const CHARAS = [
     },
     {
         "name": "佩可莉姆（夏日）",
-        "location": 235,
+        "position": 235,
         "skills": [
             {
                 "name": "甜点时间",
@@ -603,7 +603,7 @@ const CHARAS = [
     },
     {
         "name": "可可萝（夏日）",
-        "location": 535,
+        "position": 535,
         "skills": [
             {
                 "name": "脐橙支援",
@@ -617,7 +617,7 @@ const CHARAS = [
     },
     {
         "name": "铃莓（夏日）",
-        "location": 775,
+        "position": 775,
         "skills": [
             {
                 "name": "热带假期",
@@ -627,7 +627,7 @@ const CHARAS = [
     },
     {
         "name": "凯露（夏日）",
-        "location": 780,
+        "position": 780,
         "skills": [
             {
                 "name": "海浪旋涡",
@@ -641,7 +641,7 @@ const CHARAS = [
     },
     {
         "name": "美冬（夏日）",
-        "location": 495,
+        "position": 495,
         "skills": [
             {
                 "name": "利維坦之槍",
@@ -651,7 +651,7 @@ const CHARAS = [
     },
     {
         "name": "珠希（夏日）",
-        "location": 225,
+        "position": 225,
         "skills": [
             {
                 "name": "破冰",
@@ -665,7 +665,7 @@ const CHARAS = [
     },
     {
         "name": "智",
-        "location": 220,
+        "position": 220,
         "skills": [
             {
                 "name": "御久间流奥义·阿修罗",
@@ -675,7 +675,7 @@ const CHARAS = [
     },
     {
         "name": "茉莉",
-        "location": 185,
+        "position": 185,
         "skills": [
             {
                 "name": "虎之英雄轰炸",

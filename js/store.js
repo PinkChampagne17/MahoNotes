@@ -26,7 +26,7 @@ const store = new Vuex.Store({
             }
             else if (state.selectedCharas.length < 5) {
                 state.selectedCharas.push(chara)
-                state.selectedCharas.sort((a, b) => b.location - a.location)
+                state.selectedCharas.sort((a, b) => b.position - a.position)
             }
         },
         [ADD_SKILL_AND_TIME_MUTATION](state, item) {

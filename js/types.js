@@ -1,24 +1,24 @@
-const CHARA_LOCATION_FRONT  = "CHARA_LOCATION_FRONT"
-const CHARA_LOCATION_MIDDLE = "CHARA_LOCATION_MIDDLE"
-const CHARA_LOCATION_BACK   = "CHARA_LOCATION_BACK" 
+const CHARA_POSITION_FRONT  = 1
+const CHARA_POSITION_MIDDLE = 2
+const CHARA_POSITION_BACK   = 3
 
 class Chara {
-    constructor({ name, location, skills }) {
+    constructor({ name, position, skills }) {
         this.name     = name
         this.skills   = skills
-        this.location = location
+        this.position = position
         this.imgSrc   = `${CHARA_ICONS_URL_BASE}/${name}.webp`
     }
 
-    get locationName() {
-        if (this.location <= 295) {
-            return CHARA_LOCATION_FRONT
+    get positionName() {
+        if (this.position <= 295) {
+            return CHARA_POSITION_FRONT
         }
-        else if (this.location <= 590) {
-            return CHARA_LOCATION_MIDDLE
+        else if (this.position <= 590) {
+            return CHARA_POSITION_MIDDLE
         }
         else {
-            return CHARA_LOCATION_BACK
+            return CHARA_POSITION_BACK
         }
     }
 }

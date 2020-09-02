@@ -1,5 +1,5 @@
 function getCharas() {
-    return CHARAS.map(c => new Chara(c)).sort((a, b) => a.location - b.location)
+    return CHARAS.map(c => new Chara(c)).sort((a, b) => a.position - b.position)
 }
 
 function clearArrays(...arrays) {

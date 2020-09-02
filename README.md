@@ -16,7 +16,7 @@
 
 ## 适用的游戏版本
 - [x] 国服　　 (bilibili Game)
-- [ ] 泰服　　 (Ini3 E-Lympic Games)
+- [x] 泰服　　 (Ini3 E-Lympic Games) (如果进度没跟上国服的话)
 - [ ] 韩服　　 (Kakao Games)
 - [ ] 港澳台服 (So-net Entertainment Taiwan)
 - [ ] 日服　　 (Cygames)
@@ -29,7 +29,7 @@
 - [ ] 繁體中文
 - [ ] 日本語
 
-## 第三方依赖
-- Vue.js
+## 第三方依赖项
+- Vue
 - Bootstrap v4
 - Element
