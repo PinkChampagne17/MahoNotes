@@ -682,5 +682,61 @@ const CHARAS = [
                 "time": 1
             }
         ]
+    },
+    {
+        "name": "环奈",
+        "position": 185,
+        "skills": [
+            {
+                "name": "暂无数据",
+                "time": 1
+            }
+        ]
+    },
+    {
+        "name": "美咲（万圣节）",
+        "position": 815,
+        "skills": [
+            {
+                "name": "萬聖節加速",
+                "time": 12
+            },
+            {
+                "name": "南瓜死亡派對",
+                "time": 18
+            }
+        ]
+    },
+    {
+        "name": "忍（万圣节）",
+        "position": 440,
+        "skills": [
+            {
+                "name": "幽魂武器",
+                "time": 12
+            },
+            {
+                "name": "万圣夜惊魂",
+                "time": 1
+            }
+        ]
+    },
+    {
+        "name": "克里斯提娜",
+        "position": 290,
+        "skills": [
+            {
+                "name": "覆盖指令",
+                "time": 15
+            },
+            {
+                "name": "代码注入",
+                "time": 12
+            },
+            {
+                "name": "乱数圣域",
+                "time": 1
+            }
+        ]
     }
 ]
