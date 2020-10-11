@@ -29,7 +29,7 @@ class UseTime {
             this.minute = parseFloat(time.minute) 
             this.second = parseFloat(time.second)
         }
-        if (typeof time == "number") {
+        else if (typeof time == "number") {
             this.minute = parseInt(time / 60)
             this.second = parseInt(time % 60)
         }
