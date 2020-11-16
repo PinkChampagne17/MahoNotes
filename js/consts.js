@@ -606,6 +606,10 @@ const CHARAS = [
         "position": 535,
         "skills": [
             {
+                "name": "海精之矛",
+                "time": 12
+            },
+            {
                 "name": "脐橙支援",
                 "time": 12
             },
@@ -685,10 +689,14 @@ const CHARAS = [
     },
     {
         "name": "环奈",
-        "position": 185,
+        "position": 433,
         "skills": [
             {
-                "name": "暂无数据",
+                "name": "天赐之物",
+                "time": 12
+            },
+            {
+                "name": "闪耀之刃",
                 "time": 1
             }
         ]
@@ -698,11 +706,11 @@ const CHARAS = [
         "position": 815,
         "skills": [
             {
-                "name": "萬聖節加速",
+                "name": "万圣节增幅",
                 "time": 12
             },
             {
-                "name": "南瓜死亡派對",
+                "name": "南瓜死亡派对",
                 "time": 18
             }
         ]
@@ -718,6 +726,16 @@ const CHARAS = [
             {
                 "name": "万圣夜惊魂",
                 "time": 1
+            }
+        ]
+    },
+    {
+        "name": "宫子（万圣节）",
+        "position": 590,
+        "skills": [
+            {
+                "name": "不给布丁就捣蛋的说",
+                "time": 12
             }
         ]
     },
