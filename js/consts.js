@@ -648,7 +648,7 @@ const CHARAS = [
         "position": 495,
         "skills": [
             {
-                "name": "利維坦之槍",
+                "name": "利维坦之枪",
                 "time": 18
             }
         ]
@@ -744,11 +744,11 @@ const CHARAS = [
         "position": 290,
         "skills": [
             {
-                "name": "覆盖指令",
+                "name": "OVERLAY",
                 "time": 15
             },
             {
-                "name": "代码注入",
+                "name": "INJECTION",
                 "time": 12
             },
             {
