@@ -31,5 +31,6 @@
 
 ## 第三方依赖项
 - Vue
+- Vuex
 - Bootstrap v4
 - Element
