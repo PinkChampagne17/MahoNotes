@@ -756,5 +756,71 @@ const CHARAS = [
                 "time": 1
             }
         ]
+    },
+    {
+        "name": "流夏",
+        "position": 158,
+        "skills": [
+            {
+                "name": "零之太刀·水月镜花",
+                "time": 18
+            }
+        ]
+    },
+    {
+        "name": "七七香",
+        "position": 740,
+        "skills": [
+            {
+                "name": "星尘魔法",
+                "time": 12
+            },
+            {
+                "name": "七香·无限·爆破",
+                "time": 18
+            }
+        ]
+    },
+    {
+        "name": "胡桃（圣诞节）",
+        "position": 295,
+        "skills": [
+            {
+                "name": "喚冬之鈴",
+                "time": 18
+            }
+        ]
+    },
+    {
+        "name": "千歌（圣诞节）",
+        "position": 770,
+        "skills": [
+            {
+                "name": "飛昇華爾茲",
+                "time": 12
+            },
+            {
+                "name": "風精聖歌",
+                "time": 1
+            }
+        ]
+    },
+    {
+        "name": "绫音（圣诞节）",
+        "position": 190,
+        "skills": [
+            {
+                "name": "噗吉聲援",
+                "time": 10
+            },
+            {
+                "name": "噗吉聲援+",
+                "time": 12
+            },
+            {
+                "name": "噗吉聖誕‧風暴",
+                "time": 1
+            }
+        ]
     }
 ]
