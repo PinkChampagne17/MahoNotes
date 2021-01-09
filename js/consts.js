@@ -822,5 +822,83 @@ const CHARAS = [
                 "time": 1
             }
         ]
+    },
+    {
+        "name": "环奈（振袖）",
+        "position": 527,
+        "skills": [
+            {
+                "name": "天使印章",
+                "time": 18
+            },
+            {
+                "name": "天使之舞",
+                "time": 12
+            },
+            {
+                "name": "天使棱镜",
+                "time": 12
+            }
+        ]
+    },
+    {
+        "name": "优衣（振袖）",
+        "position": 745,
+        "skills": [
+            {
+                "name": "日出守护",
+                "time": 18
+            },
+            {
+                "name": "弱点之瓣+",
+                "time": 12
+            },
+            {
+                "name": "花开声援",
+                "time": 12
+            }
+        ]
+    },
+    {
+        "name": "日和莉（振袖）",
+        "position": 170,
+        "skills": [
+            {
+                "name": "日和欢乐戳章",
+                "time": 18
+            },
+            {
+                "name": "肉球蓄力",
+                "time": 12
+            }
+        ]
+    },
+    {
+        "name": "静流（情人节）",
+        "position": 385,
+        "skills": [
+            {
+                "name": "甜蜜圣界",
+                "time": 16
+            },
+            {
+                "name": "爱心射击",
+                "time": 12
+            }
+        ]
+    },
+    {
+        "name": "矛依未",
+        "position": 162,
+        "skills": [
+            {
+                "name": "天楼霸断剑",
+                "time": 1
+            },
+            {
+                "name": "这边这边！",
+                "time": 12
+            }
+        ]
     }
 ]
